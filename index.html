@@ -5,25 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>STUDIO STUDIO — Architettura e Interior Design</title>
     
-    <!-- CSS caricato correttamente via link -->
-    <link rel="stylesheet" href="/src/styles.css" />
-
-    <script type="importmap">
-      {
-        "imports": {
-          "react": "https://esm.sh/react@19",
-          "react-dom": "https://esm.sh/react-dom@19",
-          "react-dom/client": "https://esm.sh/react-dom@19/client"
-        }
-      }
-    </script>
-
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Karla:wght@300;400;500&display=swap" rel="stylesheet" />
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.js"></script>
+    <!-- Vite gestirà questo file .tsx durante lo sviluppo e la build -->
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
