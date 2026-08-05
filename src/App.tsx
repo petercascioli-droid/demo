@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react';
 
-// URL di immagini Unsplash in alta definizione selezionate per rispecchiare i prompt
 const IMAGES = {
   hero: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1600&auto=format&fit=crop",
   p1: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1200&auto=format&fit=crop",
@@ -13,7 +12,6 @@ const IMAGES = {
 export default function App() {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Hook Reveal tramite IntersectionObserver
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
@@ -38,7 +36,7 @@ export default function App() {
 
   return (
     <div ref={containerRef} className="relative w-full">
-      {/* HEADER (FISSO) */}
+      {/* HEADER */}
       <header className="fixed inset-x-0 top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-md gpu px-5 py-4 sm:px-8">
         <div className="mx-auto flex max-w-6xl items-center justify-between">
           <div className="flex flex-col">
@@ -48,7 +46,6 @@ export default function App() {
             <span className="kicker -mt-1">Architettura · Interni</span>
           </div>
 
-          {/* Nav Desktop */}
           <nav className="hidden gap-8 md:flex">
             <a href="#lavori" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
               Lavori
@@ -64,7 +61,6 @@ export default function App() {
             </a>
           </nav>
 
-          {/* Bottone Mobile */}
           <a
             href="#contatti"
             className="md:hidden border border-foreground/30 px-4 py-2 text-xs tracking-[0.18em] uppercase transition-colors hover:bg-foreground hover:text-background"
@@ -128,7 +124,6 @@ export default function App() {
         </div>
 
         <div className="mt-12 grid gap-x-6 gap-y-12 sm:grid-cols-2">
-          {/* Card 1 */}
           <div className="reveal">
             <div className="frame aspect-[4/5] w-full">
               <img
@@ -148,7 +143,6 @@ export default function App() {
             <p className="mt-1 text-sm text-muted-foreground">Roma · 2025</p>
           </div>
 
-          {/* Card 2 (Dispari - sfalsata) */}
           <div className="reveal sm:mt-20" style={{ transitionDelay: '90ms' }}>
             <div className="frame aspect-[4/5] w-full">
               <img
@@ -168,7 +162,6 @@ export default function App() {
             <p className="mt-1 text-sm text-muted-foreground">Milano · 2024</p>
           </div>
 
-          {/* Card 3 */}
           <div className="reveal">
             <div className="frame aspect-[4/5] w-full">
               <img
@@ -188,7 +181,6 @@ export default function App() {
             <p className="mt-1 text-sm text-muted-foreground">Firenze · 2024</p>
           </div>
 
-          {/* Card 4 (Dispari - sfalsata) */}
           <div className="reveal sm:mt-20" style={{ transitionDelay: '90ms' }}>
             <div className="frame aspect-[4/5] w-full">
               <img
