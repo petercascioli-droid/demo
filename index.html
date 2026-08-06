@@ -2,63 +2,67 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hardware Lab | Riparazioni Ad Alta Precisione</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Hardware Lab | Servizi Avanzati & Riparazioni</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
+    <!-- Neon Ambient Orbs (Background Glow Effects) -->
+    <div class="ambient-orb orb-1"></div>
+    <div class="ambient-orb orb-2"></div>
+
     <nav class="navbar">
         <div class="logo">HARDWARE<span>LAB</span></div>
         <ul class="nav-links">
             <li><a href="index.html" class="active">Home</a></li>
-            <li><a href="riparazioni.html">Servizi & Schede</a></li>
-            <li><a href="diagnostica.html">Laboratorio BGA</a></li>
+            <li><a href="riparazioni.html">Servizi</a></li>
+            <li><a href="diagnostica.html">Lab</a></li>
         </ul>
-        <a href="riparazioni.html" class="btn-primary">Richiedi Checkup</a>
+        <a href="riparazioni.html" class="btn-primary glow-effect">Checkup</a>
     </nav>
 
     <header class="hero">
         <div class="hero-content">
-            <div class="badge">🔬 Micro-Saldatura & Diagnostica Level 3</div>
-            <h1>Ripristino Hardware <br><span class="gradient-text">Senza Compromessi.</span></h1>
-            <p>Dalla sostituzione di display OLED alla ricostruzione di linee di alimentazione in corto su schede madri Smartphone e Tablet.</p>
+            <div class="badge neon-border">⚡ Micro-Ingegneria & Laboratorio Laser</div>
+            <h1>Ripristino Dispositivi <br><span class="gradient-text">Livello Hardware</span></h1>
+            <p>Dalla rigenerazione display e rimozione back cover a tecnologia Laser Machine, fino alla risoluzione di cortocircuiti SMD e problemi software.</p>
             <div class="hero-btns">
-                <a href="riparazioni.html" class="btn-primary">Esplora Interventi</a>
-                <a href="diagnostica.html" class="btn-secondary">Scopri il Laboratorio</a>
+                <a href="riparazioni.html" class="btn-primary glow-effect">Tutti i Servizi</a>
+                <a href="diagnostica.html" class="btn-secondary">Diagnostica Lab</a>
             </div>
         </div>
         <div class="hero-visual">
-            <div class="tech-card-glass">
-                <div class="chip-icon">⚡</div>
-                <h3>Precisione al Microscopio</h3>
-                <p>Interventi SMD/BGA sotto ingrandimento ottico 45x per la massima accuratezza dei componenti.</p>
+            <div class="tech-card-glass neon-glow-card">
+                <div class="chip-icon">🔬</div>
+                <h3>Rimozione Back Cover Laser</h3>
+                <p>Tecnologia a impulsi ottici per la rimozione automatizzata del vetro posteriore senza smontare o riscaldare i componenti interni.</p>
                 <div class="stats-grid">
-                    <div><strong>0.02mm</strong> Spessore Jumpers</div>
-                    <div><strong>99.4%</strong> Successo Short-Circuit</div>
+                    <div><strong>Laser 1064nm</strong> Precisione Ottica</div>
+                    <div><strong>OCA Mold</strong> Rigenerazione Display</div>
                 </div>
             </div>
         </div>
     </header>
 
     <section class="quick-specs">
-        <h2>Perché l'Architettura Hardware Conta</h2>
+        <h2 class="section-title">Servizi Principali in Evidenza</h2>
         <div class="grid-3">
-            <div class="card">
-                <div class="card-icon">📱</div>
-                <h3>Display OLED / AMOLED</h3>
-                <p>Taratura del controller touch e ripristino dei sensori ambientali TrueTone & Haptic Engine.</p>
-            </div>
-            <div class="card">
+            <div class="card neon-card">
                 <div class="card-icon">🔋</div>
-                <h3>Sistemi di Alimentazione</h3>
-                <p>Sostituzione celle con bms integrato, calibrazione dei cicli e verifica IC di ricarica PMIC.</p>
+                <h3>Sostituzione Batteria</h3>
+                <p>Celle ad alta densità energetica con calibrazione BMS e verifica stato di salute.</p>
             </div>
-            <div class="card">
-                <div class="card-icon">🩺</div>
-                <h3>Recupero Danni da Liquidi</h3>
-                <p>Lavaggio ad ultrasuoni in solvente anidro e deossidazione chimica della scheda logica.</p>
+            <div class="card neon-card">
+                <div class="card-icon">🎯</div>
+                <h3>Rigenerazione Display</h3>
+                <p>Ricostruzione del solo vetro con laminazione OCA vacuum, mantenendo il pannello originale.</p>
+            </div>
+            <div class="card neon-card">
+                <div class="card-icon">⚡</div>
+                <h3>Porta di Ricarica & Tasti</h3>
+                <p>Sostituzione connettori USB-C/Lightning e ripristino micro-switch dei tasti power e volume.</p>
             </div>
         </div>
     </section>
