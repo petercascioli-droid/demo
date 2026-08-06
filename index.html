@@ -9,15 +9,18 @@
 </head>
 <body>
 
-    <!-- Sfondo Costellazioni e Circuiti -->
-    <div id="stars-container"></div>
-    <div class="circuit-background"></div>
-    <div class="circuit-lines"></div>
+    <!-- Sfondo Animato Canvas (Autonomo) -->
+    <canvas id="bgCanvas"></canvas>
 
-    <!-- Spotlight neon -->
+    <!-- Spotlight neon fissi -->
     <div class="neon-orb orb-1"></div>
     <div class="neon-orb orb-2"></div>
-    <div class="neon-orb orb-3"></div>
+
+    <!-- Cursore Custom (Sempre visibile e preciso) -->
+    <div id="cursorOrb">
+        <div class="cursor-dot"></div>
+        <div class="cursor-ring"></div>
+    </div>
 
     <!-- Navbar -->
     <nav class="navbar">
@@ -45,7 +48,7 @@
         </div>
     </section>
 
-    <!-- SEZIONE 2: SERVIZI OTTIMIZZATI -->
+    <!-- SEZIONE 2: SERVIZI -->
     <section id="servizi" class="container">
         <header class="section-header">
             <span class="service-tag">CATALOGO TECNICO</span>
