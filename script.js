@@ -1,14 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
     const ball = document.getElementById('cursorBall');
 
-    // Posizione reale del mouse
     let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
     let lastMouse = { x: mouse.x, y: mouse.y };
-
-    // Posizione fisica corrente della pallina
     let pos = { x: mouse.x, y: mouse.y };
     
-    // Parametri orbitali e fisici
     let angle = 0;
     let targetElement = null;
 
@@ -17,7 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
         mouse.y = e.clientY;
     });
 
-    // Selettori interattivi per lo snap sui bottoni/card
     const interactiveSelectors = '.service-card, .info-card, .btn-primary, .btn-secondary, .btn-social, .nav-links a, .logo-container';
     const interactiveElements = document.querySelectorAll(interactiveSelectors);
 
@@ -46,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function renderPhysics() {
         if (targetElement) {
-            // --- MODALITÀ SNAP (Sopra un elemento cliccabile) ---
+            // SNAP SUI BOTTONI
             const rect = targetElement.getBoundingClientRect();
             let targetX = rect.left + rect.width / 2;
             let targetY = rect.top + rect.height / 2;
@@ -65,9 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
             ball.style.transform = `translate(-50%, -50%) rotate(0deg)`;
 
         } else {
-            // --- MODALITÀ FISICA AVANZATA (Orbita, Centrifuga & Allungamento) ---
-            
-            // 1. Calcola la velocità del mouse (per l'inerzia e l'allungamento)
+            // ORBITA + FISICA AVANZATA (Centrifuga & Allungamento)
             let vx = mouse.x - lastMouse.x;
             let vy = mouse.y - lastMouse.y;
             let speed = Math.hypot(vx, vy);
@@ -75,25 +68,19 @@ document.addEventListener("DOMContentLoaded", () => {
             lastMouse.x = mouse.x;
             lastMouse.y = mouse.y;
 
-            // 2. Progredisce l'angolo dell'orbita (accelerando leggermente se il mouse si muove veloce)
             angle += 0.07 + (speed * 0.002);
             let orbitRadius = 20;
-
-            // 3. Effetto centrifuga: spinge l'orbita verso l'esterno in base alla velocità
             let centrifugalForce = Math.min(speed * 0.4, 15);
             let currentRadius = orbitRadius + centrifugalForce;
 
-            // Posizione ideale attorno al mouse
             let targetOrbX = mouse.x + Math.cos(angle) * currentRadius;
             let targetOrbY = mouse.y + Math.sin(angle) * currentRadius;
 
-            // Inerzia fluida della pallina verso la posizione orbitale
             pos.x = lerp(pos.x, targetOrbX, 0.2);
             pos.y = lerp(pos.y, targetOrbY, 0.2);
 
-            // 4. Calcola l'allungamento (stretch) e l'inclinazione in base alla direzione del movimento
             let moveAngle = Math.atan2(vy, vx);
-            let stretch = Math.min(speed * 0.6, 18); // Intensità dell'allungamento
+            let stretch = Math.min(speed * 0.6, 18);
 
             let baseSize = 12;
             let width = baseSize + stretch;
@@ -102,8 +89,6 @@ document.addEventListener("DOMContentLoaded", () => {
             ball.style.width = `${width}px`;
             ball.style.height = `${height}px`;
             ball.style.borderRadius = '50%';
-            
-            // Ruota la pallina orientandola lungo la direzione di movimento (effetto scia dinamica)
             ball.style.transform = `translate(-50%, -50%) rotate(${moveAngle}rad)`;
         }
 
