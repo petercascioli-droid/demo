@@ -3,56 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Contatti & Social | Hardware Lab</title>
+    <title>Contatti & Posizione | Nexus Lab</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
+
+    <canvas id="circuitCanvas"></canvas>
 
     <div class="neon-orb orb-1"></div>
     <div class="neon-orb orb-2"></div>
 
     <nav class="navbar">
-        <a href="index.html" class="logo">HARDWARE<span>LAB</span></a>
+        <a href="index.html" class="logo-container">
+            <div class="logo-icon">NX</div>
+            <div class="logo-text">NEXUS<span>LAB</span></div>
+        </a>
         <ul class="nav-links">
             <li><a href="riparazioni.html">Servizi</a></li>
             <li><a href="diagnostica.html">Lab</a></li>
+            <li><a href="contatti.html" class="active">Contatti</a></li>
         </ul>
-        <a href="contatti.html" class="btn-primary active-btn">Contattaci</a>
+        <a href="contatti.html" class="btn-primary">Contattaci</a>
     </nav>
 
     <main class="container page-content">
         <header class="page-header">
-            <h1>Contatti & Canali Social</h1>
-            <p>Entra in contatto diretto con il laboratorio o seguici sulle nostre piattaforme ufficiali.</p>
+            <h1>Contatta il Laboratorio</h1>
+            <p>Parla direttamente con i tecnici, invia foto del danno o vieni a trovarci in sede.</p>
         </header>
 
-        <div class="contact-grid">
-            <div class="contact-card">
-                <span class="service-tag">DIRECT LINE</span>
-                <h3>WhatsApp Business</h3>
-                <p>Scrivici per preventivi rapidi, invio foto del danno o stato della riparazione.</p>
-                <a href="https://wa.me/" target="_blank" class="btn-primary social-btn">Apri Chat WhatsApp</a>
+        <div class="contact-container">
+            <!-- Colonna Info e Social -->
+            <div class="contact-info-col">
+                <div class="info-card">
+                    <div class="info-card-header">
+                        <span class="quick-icon">💬</span>
+                        <h3>Assistenza WhatsApp</h3>
+                    </div>
+                    <p>Il canale più veloce per ricevere un preventivo immediato o verificare lo stato di riparazione del tuo dispositivo.</p>
+                    <a href="https://wa.me/" target="_blank" class="btn-social btn-whatsapp">Apri Chat WhatsApp</a>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-card-header">
+                        <span class="quick-icon">📸</span>
+                        <h3>Canale Instagram</h3>
+                    </div>
+                    <p>Segui i nostri reel sul dietro le quinte, le micro-saldature al microscopio e le rigenerazioni display.</p>
+                    <a href="https://instagram.com" target="_blank" class="btn-social btn-instagram">Seguici su Instagram</a>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-card-header">
+                        <span class="quick-icon">🕒</span>
+                        <h3>Orari & Sede</h3>
+                    </div>
+                    <p><strong>Indirizzo:</strong> Roma, RM<br>
+                    <strong>Orari:</strong> Lunedì - Sabato (09:00 - 19:30)<br>
+                    Domenica: Chiuso</p>
+                </div>
             </div>
 
-            <div class="contact-card">
-                <span class="service-tag">SOCIAL MEDIA</span>
-                <h3>Instagram Lab</h3>
-                <p>Guarda i reel sulle micro-saldature e il dietro le quinte del laboratorio.</p>
-                <a href="https://instagram.com" target="_blank" class="btn-secondary social-btn">Seguici su Instagram</a>
-            </div>
-
-            <div class="contact-card">
-                <span class="service-tag">LABORATORIO</span>
-                <h3>Indirizzo & Orari</h3>
-                <p>Roma, RM<br>Lun - Sab: 09:00 - 19:30</p>
-                <span class="status-dot-text"><span class="status-dot"></span> Laboratorio Aperto</span>
+            <!-- Colonna Mappa Interattiva -->
+            <div class="map-col">
+                <div class="info-card-header" style="margin-bottom: 15px;">
+                    <span class="quick-icon">🗺️</span>
+                    <h3>Dove Trovarci</h3>
+                </div>
+                <div class="map-wrapper">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d94874.6738914844!2d12.42145395!3d41.9027835!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132f6196f9928ebb%3A0xb90f770693656e36!2sRoma%20RM!5e0!3m2!1sit!2sit!4v1650000000000!5m2!1sit!2sit" allowfullscreen="" loading="lazy"></iframe>
+                </div>
             </div>
         </div>
     </main>
 
     <footer>
-        <p>&copy; 2026 Hardware Lab — Ingegneria e Riparazione Dispositivi Mobile</p>
+        <p>&copy; 2026 Nexus Lab — Ingegneria e Riparazione Dispositivi Mobile</p>
     </footer>
 
     <script src="script.js"></script>
