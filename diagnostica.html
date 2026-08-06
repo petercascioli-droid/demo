@@ -2,62 +2,66 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laboratorio BGA & Diagnostica | Hardware Lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Laboratorio & Processi | Hardware Lab</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+
+    <div class="neon-orb orb-1"></div>
+    <div class="neon-orb orb-2"></div>
 
     <nav class="navbar">
         <div class="logo">HARDWARE<span>LAB</span></div>
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
-            <li><a href="riparazioni.html">Servizi & Schede</a></li>
-            <li><a href="diagnostica.html" class="active">Laboratorio BGA</a></li>
+            <li><a href="riparazioni.html">Servizi</a></li>
+            <li><a href="diagnostica.html" class="active">Lab</a></li>
         </ul>
-        <a href="riparazioni.html" class="btn-primary">Richiedi Checkup</a>
+        <a href="riparazioni.html" class="btn-primary">Checkup</a>
     </nav>
 
     <main class="container page-content">
         <header class="page-header">
-            <h1>Diagnostica Termografica & Micro-Saldatura</h1>
-            <p>Come individuiamo ed eliminiamo i guasti invisibili ad occhio nudo.</p>
+            <h1>Tecnologia di Laboratorio</h1>
+            <p>Igiene, attrezzatura ottica e macchinari di precisione laser per ogni intervento.</p>
         </header>
 
         <div class="grid-2">
-            <div class="card tech-box">
-                <div class="code-header">DIAGNOSTICA_TERMICA.log</div>
-                <h3>Analisi ad Infrarossi</h3>
-                <p>Attraverso termocamere ad alta risoluzione spettrale, alimentiamo la scheda logica con tensioni di test per individuare istantaneamente micro-cortocircuiti tramite l'emissione termica dei componenti in anomalia.</p>
+            <div class="card tech-box neon-hover">
+                <div class="code-header">LASER_REMOVAL.sys</div>
+                <h3>Stazione Laser Machine</h3>
+                <p>Utilizzata per bruciare e polverizzare lo strato di colla e vernice sotto la back cover posteriore in vetro senza danneggiare bobine di ricarica wireless né la batteria.</p>
             </div>
-            <div class="card tech-box">
-                <div class="code-header">REBALLING_BGA.sys</div>
-                <h3>Reballing & Sostituzione Chip</h3>
-                <p>Rimozione di integrati BGA (NAND Flash, Processori, IC di carica) degradati, pulizia dei pad con maglia di rame e applicazione di sfere di stagno eutettico tramite stencil ad alta precisione.</p>
+            <div class="card tech-box neon-hover">
+                <div class="code-header">DIAGNOSTIC_THERMAL.log</div>
+                <h3>Analisi Termografica Infrarossi</h3>
+                <p>Individuazione istantanea del componente in cortocircuito sulla scheda madre mediante il rilevamento del picco di temperatura sulle linee principali di alimentazione.</p>
             </div>
         </div>
 
         <div class="process-timeline">
-            <h2>Fasi del Processo di Ripristino</h2>
+            <h2>Processo Operativo Standard</h2>
             <div class="timeline-step">
                 <div class="step-num">01</div>
                 <div>
-                    <h4>Ispezione Visiva & Test Multimetro</h4>
-                    <p>Misurazione dei valori di caduta di tensione (Diode Mode) su tutte le linee di alimentazione principali.</p>
+                    <h4>Diagnostic Scan Iniziale</h4>
+                    <p>Scansione per verificare lo stato di salute della scheda, della memoria NAND e dei chip di alimentazione.</p>
                 </div>
             </div>
             <div class="timeline-step">
                 <div class="step-num">02</div>
                 <div>
-                    <h4>Intervento in Camera Isolata</h4>
-                    <p>Smontaggio del dispositivo e rimozione delle schermature metalliche (Shields) tramite stazione ad aria calda riscaldata a temperatura controllata.</p>
+                    <h4>Intervento ad Alta Precisione</h4>
+                    <p>Utilizzo di stazioni ad aria calda calibrate, microscopi stereoscopici e macchina laser per le scocche.</p>
                 </div>
             </div>
             <div class="timeline-step">
                 <div class="step-num">03</div>
                 <div>
-                    <h4>Collaudo Bench-Test & Sigillatura</h4>
-                    <p>Test di stress sotto carico (CPU/GPU) e ripristino delle guarnizioni di tenuta ermetica prima della consegna.</p>
+                    <h4>Sigillatura IP68 & Collaudo</h4>
+                    <p>Applicazione delle nuove guarnizioni ermetiche e test di stress dell'intero dispositivo prima della consegna.</p>
                 </div>
             </div>
         </div>
@@ -67,5 +71,6 @@
         <p>&copy; 2026 Hardware Lab — Ingegneria e Riparazione Dispositivi Mobile</p>
     </footer>
 
+    <script src="script.js"></script>
 </body>
 </html>
