@@ -59,14 +59,15 @@ document.addEventListener("DOMContentLoaded", () => {
     animateBackground();
 
 
-    // --- 2. CURSORE CUSTOM (Aura fluida + Snap pulito) ---
-    const orb = document.getElementById('cursorOrb');
-    const ring = orb.querySelector('.cursor-ring');
+    // --- 2. CURSORE CUSTOM CON PALLINA ORBITANTE E SNAP ---
+    const cursor = document.getElementById('customCursor');
+    const ball = cursor.querySelector('.orbiting-ball');
     
     let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
-    let current = { x: mouse.x, y: mouse.y, w: 24, h: 24, radius: 50 };
-    let target = { x: mouse.x, y: mouse.y, w: 24, h: 24, radius: 50 };
+    let current = { x: mouse.x, y: mouse.y, w: 35, h: 35, radius: 50 };
+    let target = { x: mouse.x, y: mouse.y, w: 35, h: 35, radius: 50 };
     let targetElement = null;
+    let angle = 0;
 
     document.addEventListener('mousemove', (e) => {
         mouse.x = e.clientX;
@@ -79,52 +80,64 @@ document.addEventListener("DOMContentLoaded", () => {
         const interactive = e.target.closest(interactiveSelectors);
         if (interactive) {
             targetElement = interactive;
-            ring.style.borderColor = '#ffffff';
-            ring.style.boxShadow = '0 0 20px #ffffff';
+            ball.style.background = '#ffffff';
+            ball.style.boxShadow = '0 0 20px #ffffff';
         }
     });
 
     document.addEventListener('mouseout', (e) => {
         if (targetElement && (!e.relatedTarget || !e.relatedTarget.closest(interactiveSelectors))) {
             targetElement = null;
-            ring.style.borderColor = 'var(--accent)';
-            ring.style.boxShadow = '0 0 15px rgba(0, 243, 255, 0.4)';
+            ball.style.background = '#ffffff';
+            ball.style.boxShadow = '0 0 12px #ffffff, 0 0 20px var(--accent)';
         }
     });
 
     const lerp = (start, end, amt) => (1 - amt) * start + amt * end;
 
     function renderCursor() {
+        // Fa ruotare la pallina attorno al cursore se non è agganciata a un elemento
+        if (!targetElement) {
+            angle += 0.05;
+            let radiusOrbit = 18;
+            let ballX = Math.cos(angle) * radiusOrbit;
+            let ballY = Math.sin(angle) * radiusOrbit;
+            ball.style.transform = `translate(calc(-50% + ${ballX}px), calc(-50% + ${ballY}px))`;
+        } else {
+            // Quando è sopra un elemento, la pallina si posiziona elegantemente in alto
+            ball.style.transform = `translate(-50%, -18px)`;
+        }
+
         if (targetElement) {
             const rect = targetElement.getBoundingClientRect();
-            target.w = rect.width + 10;
-            target.h = rect.height + 10;
+            target.w = rect.width + 12;
+            target.h = rect.height + 12;
             target.x = rect.left + rect.width / 2;
             target.y = rect.top + rect.height / 2;
             target.radius = 12;
 
-            current.x = lerp(current.x, target.x, 0.3);
-            current.y = lerp(current.y, target.y, 0.3);
-            current.w = lerp(current.w, target.w, 0.3);
-            current.h = lerp(current.h, target.h, 0.3);
-            current.radius = lerp(current.radius, target.radius, 0.3);
+            current.x = lerp(current.x, target.x, 0.25);
+            current.y = lerp(current.y, target.y, 0.25);
+            current.w = lerp(current.w, target.w, 0.25);
+            current.h = lerp(current.h, target.h, 0.25);
+            current.radius = lerp(current.radius, target.radius, 0.25);
         } else {
-            target.w = 24;
-            target.h = 24;
+            target.w = 35;
+            target.h = 35;
             target.radius = 50;
 
-            current.x = lerp(current.x, mouse.x, 0.35);
-            current.y = lerp(current.y, mouse.y, 0.35);
-            current.w = lerp(current.w, target.w, 0.3);
-            current.h = lerp(current.h, target.h, 0.3);
-            current.radius = lerp(current.radius, target.radius, 0.3);
+            current.x = lerp(current.x, mouse.x, 0.3);
+            current.y = lerp(current.y, mouse.y, 0.3);
+            current.w = lerp(current.w, target.w, 0.25);
+            current.h = lerp(current.h, target.h, 0.25);
+            current.radius = lerp(current.radius, target.radius, 0.25);
         }
 
-        orb.style.width = `${current.w}px`;
-        orb.style.height = `${current.h}px`;
-        orb.style.left = `${current.x}px`;
-        orb.style.top = `${current.y}px`;
-        orb.style.borderRadius = current.radius > 40 ? `50%` : `${current.radius}px`;
+        cursor.style.width = `${current.w}px`;
+        cursor.style.height = `${current.h}px`;
+        cursor.style.left = `${current.x}px`;
+        cursor.style.top = `${current.y}px`;
+        cursor.style.borderRadius = current.radius > 40 ? `50%` : `${current.radius}px`;
 
         requestAnimationFrame(renderCursor);
     }
