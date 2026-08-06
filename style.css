@@ -5,14 +5,13 @@
 }
 
 :root {
-    --bg-color: #050505;
-    --glass-bg: rgba(255, 255, 255, 0.04);
-    --glass-border: rgba(255, 255, 255, 0.1);
-    --card-bg: rgba(15, 15, 20, 0.65);
+    --bg-color: #030508;
+    --glass-bg: rgba(10, 15, 25, 0.6);
+    --glass-border: rgba(0, 243, 255, 0.15);
     --accent: #00f3ff;
     --accent-purple: #9d00ff;
     --text-main: #ffffff;
-    --text-muted: #94a3b8;
+    --text-muted: #8a99ad;
 }
 
 body {
@@ -21,10 +20,62 @@ body {
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
     position: relative;
-    min-height: 100vh;
+    scroll-behavior: smooth;
 }
 
-/* NAVBAR LIQUID GLASS FLOTTANTE */
+/* SFONDO CIRCUITO GEOMETRICO DINAMICO */
+.circuit-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: 
+        linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: -4;
+    pointer-events: none;
+}
+
+.circuit-lines {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 59px,
+        rgba(0, 243, 255, 0.08) 60px
+    );
+    z-index: -3;
+    pointer-events: none;
+    animation: circuitPulse 6s ease-in-out infinite alternate;
+}
+
+@keyframes circuitPulse {
+    0% { opacity: 0.2; transform: translateY(0); }
+    100% { opacity: 0.8; transform: translateY(-10px); }
+}
+
+/* SPOTLIGHT COLORATE */
+.neon-orb {
+    position: absolute;
+    width: 450px;
+    height: 450px;
+    border-radius: 50%;
+    filter: blur(160px);
+    z-index: -2;
+    opacity: 0.15;
+    pointer-events: none;
+}
+.orb-1 { top: 10%; left: 10%; background: var(--accent); }
+.orb-2 { top: 50%; right: 10%; background: var(--accent-purple); }
+.orb-3 { bottom: 10%; left: 20%; background: var(--accent); }
+
+/* NAVBAR LIQUID GLASS */
 .navbar {
     position: fixed;
     top: 20px;
@@ -42,7 +93,7 @@ body {
     justify-content: space-between;
     align-items: center;
     z-index: 1000;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
 }
 
 .logo-container {
@@ -61,7 +112,7 @@ body {
     align-items: center;
     justify-content: center;
     font-weight: 800;
-    color: #050505;
+    color: #030508;
     font-size: 0.95rem;
 }
 
@@ -69,12 +120,9 @@ body {
     font-weight: 700;
     font-size: 1.1rem;
     color: #fff;
-    letter-spacing: 0.5px;
 }
 
-.logo-text span {
-    color: var(--accent);
-}
+.logo-text span { color: var(--accent); }
 
 .nav-links {
     display: flex;
@@ -91,45 +139,43 @@ body {
     transition: 0.3s;
 }
 
-.nav-links a:hover, .nav-links a.active-link {
+.nav-links a:hover {
     color: #fff;
     text-shadow: 0 0 10px rgba(255,255,255,0.4);
 }
 
 .nav-btn {
     background: var(--accent);
-    color: #050505 !important;
+    color: #030508 !important;
     padding: 8px 18px;
     border-radius: 20px;
     font-weight: 600;
 }
 
-/* CURSORE ORBITALE */
+/* CURSORE INTERATTIVO E METEORITE */
 #cursorOrb {
     position: fixed;
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
     background: var(--accent);
     border-radius: 50%;
     pointer-events: none;
     z-index: 9999;
-    box-shadow: 0 0 15px var(--accent);
+    box-shadow: 0 0 20px var(--accent), 0 0 40px var(--accent);
     transform: translate(-50%, -50%);
+    will-change: transform, width, height, left, top;
+    transition: background 0.3s, border 0.3s, box-shadow 0.3s, border-radius 0.3s;
 }
 
-/* SFONDO ORBS */
-.neon-orb {
-    position: absolute;
-    width: 350px;
-    height: 350px;
-    border-radius: 50%;
-    filter: blur(140px);
-    z-index: -3;
-    opacity: 0.12;
+.meteor-tail {
+    position: fixed;
     pointer-events: none;
+    background: linear-gradient(90deg, rgba(0,243,255,0.8), transparent);
+    height: 4px;
+    border-radius: 2px;
+    z-index: 9998;
+    transform-origin: left center;
 }
-.orb-1 { top: 5%; left: 15%; background: var(--accent); }
-.orb-2 { bottom: 10%; right: 15%; background: var(--accent-purple); }
 
 .container {
     max-width: 1000px;
@@ -137,19 +183,17 @@ body {
     padding: 0 20px;
 }
 
-/* HERO SECTION */
-.hero-section {
-    min-height: 90vh;
+section {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding-top: 120px;
+    padding: 120px 0 60px 0;
 }
 
+/* HERO */
 .hero-content h1 {
-    font-size: 2.8rem;
+    font-size: 3rem;
     font-weight: 800;
     color: #fff;
     margin: 15px 0;
@@ -158,29 +202,27 @@ body {
 
 .hero-content p {
     color: var(--text-muted);
-    font-size: 1.05rem;
+    font-size: 1.1rem;
     max-width: 600px;
-    margin: 0 auto 30px auto;
+    margin-bottom: 30px;
     line-height: 1.5;
 }
 
 .hero-buttons {
     display: flex;
     gap: 15px;
-    justify-content: center;
 }
 
 .btn-primary {
     background: var(--accent);
-    color: #050505;
+    color: #030508;
     padding: 12px 24px;
     border-radius: 10px;
     text-decoration: none;
     font-weight: 600;
-    font-size: 0.95rem;
     transition: 0.3s;
 }
-.btn-primary:hover { box-shadow: 0 0 20px rgba(0, 243, 255, 0.5); }
+.btn-primary:hover { box-shadow: 0 0 25px rgba(0, 243, 255, 0.6); }
 
 .btn-secondary {
     background: transparent;
@@ -190,32 +232,21 @@ body {
     border-radius: 10px;
     text-decoration: none;
     font-weight: 600;
-    font-size: 0.95rem;
     transition: 0.3s;
 }
 .btn-secondary:hover { background: rgba(0, 243, 255, 0.1); }
 
-/* PAGINA SERVIZI - DUE COLONNE + ULTIMO CENTRATO */
-.page-content {
-    padding-top: 130px;
-    padding-bottom: 80px;
-}
-
-.page-header {
-    text-align: center;
+/* SERVIZI A 2 COLONNE + ULTIMO CENTRATO */
+.section-header {
     margin-bottom: 40px;
 }
-
-.page-header h1 {
+.section-header h2 {
     font-size: 2.3rem;
     font-weight: 800;
     color: #fff;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
-
-.page-header p {
-    color: var(--text-muted);
-}
+.section-header p { color: var(--text-muted); }
 
 .services-grid-2col {
     display: grid;
@@ -224,7 +255,7 @@ body {
 }
 
 .service-card {
-    background: var(--card-bg);
+    background: var(--glass-bg);
     border: 1px solid var(--glass-border);
     border-radius: 14px;
     padding: 18px;
@@ -232,14 +263,13 @@ body {
     gap: 16px;
     align-items: center;
     backdrop-filter: blur(10px);
-    transition: 0.3s;
+    transition: border-color 0.3s, transform 0.2s;
 }
 
 .service-card:hover {
-    border-color: rgba(0, 243, 255, 0.3);
+    border-color: rgba(0, 243, 255, 0.6);
 }
 
-/* IMMAGINI PICCOLE E PULITE (Risolto il problema delle dimensioni) */
 .service-img-box {
     width: 90px;
     min-width: 90px;
@@ -278,7 +308,6 @@ body {
     font-weight: 700;
 }
 
-/* Ultimo elemento centrato e simmetrico */
 .service-card.centered-last {
     grid-column: 1 / -1;
     max-width: 550px;
@@ -286,7 +315,7 @@ body {
     width: 100%;
 }
 
-/* PAGINA CONTATTI */
+/* CONTATTI */
 .contact-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -294,7 +323,7 @@ body {
 }
 
 .info-card {
-    background: var(--card-bg);
+    background: var(--glass-bg);
     border: 1px solid var(--glass-border);
     padding: 24px;
     border-radius: 14px;
@@ -305,11 +334,7 @@ body {
 .info-card h3 { color: #fff; margin-bottom: 8px; font-size: 1.1rem; }
 .info-card p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 15px; }
 
-.social-btns {
-    display: flex;
-    gap: 10px;
-}
-
+.social-btns { display: flex; gap: 10px; }
 .btn-social {
     flex: 1;
     padding: 10px;
@@ -324,7 +349,7 @@ body {
 .btn-instagram { background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af); }
 
 .map-box {
-    background: var(--card-bg);
+    background: var(--glass-bg);
     border: 1px solid var(--glass-border);
     padding: 15px;
     border-radius: 14px;
@@ -354,5 +379,5 @@ footer {
     .service-card.centered-last { grid-column: auto; max-width: 100%; }
     .contact-container { grid-template-columns: 1fr; }
     .navbar { width: 95%; padding: 12px 20px; }
-    .hero-content h1 { font-size: 2.2rem; }
+    .hero-content h1 { font-size: 2.3rem; }
 }
