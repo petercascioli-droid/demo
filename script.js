@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    // Generazione particelle autonome
     const particleCount = Math.floor(window.innerWidth / 35);
     const particles = [];
     
@@ -32,7 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
         ctx.strokeStyle = 'rgba(0, 243, 255, 0.08)';
         ctx.lineWidth = 1;
 
-        // Muovi e collega particelle
         for (let i = 0; i < particles.length; i++) {
             let p = particles[i];
             p.x += p.vx;
@@ -45,7 +43,6 @@ document.addEventListener("DOMContentLoaded", () => {
             ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
             ctx.fill();
 
-            // Collega con linee se vicine
             for (let j = i + 1; j < particles.length; j++) {
                 let p2 = particles[j];
                 let dist = Math.hypot(p.x - p2.x, p.y - p2.y);
@@ -62,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
     animateBackground();
 
 
-    // --- 2. CURSORE CUSTOM PRECISO & SNAP FLUIDO ---
+    // --- 2. CURSORE CUSTOM (Aura fluida + Snap pulito) ---
     const orb = document.getElementById('cursorOrb');
     const ring = orb.querySelector('.cursor-ring');
     
@@ -78,23 +75,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const interactiveSelectors = '.service-card, .info-card, .btn-primary, .btn-secondary, .btn-social, .nav-links a, .logo-container';
     
-    document.querySelectorAll(interactiveSelectors).forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            targetElement = el;
+    document.addEventListener('mouseover', (e) => {
+        const interactive = e.target.closest(interactiveSelectors);
+        if (interactive) {
+            targetElement = interactive;
             ring.style.borderColor = '#ffffff';
             ring.style.boxShadow = '0 0 20px #ffffff';
-        });
+        }
+    });
 
-        el.addEventListener('mouseleave', () => {
-            setTimeout(() => {
-                const hoveredNow = document.querySelector(':hover');
-                if (!hoveredNow || !hoveredNow.closest(interactiveSelectors)) {
-                    targetElement = null;
-                    ring.style.borderColor = 'var(--accent)';
-                    ring.style.boxShadow = '0 0 15px rgba(0, 243, 255, 0.4)';
-                }
-            }, 10);
-        });
+    document.addEventListener('mouseout', (e) => {
+        if (targetElement && (!e.relatedTarget || !e.relatedTarget.closest(interactiveSelectors))) {
+            targetElement = null;
+            ring.style.borderColor = 'var(--accent)';
+            ring.style.boxShadow = '0 0 15px rgba(0, 243, 255, 0.4)';
+        }
     });
 
     const lerp = (start, end, amt) => (1 - amt) * start + amt * end;
@@ -106,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
             target.h = rect.height + 10;
             target.x = rect.left + rect.width / 2;
             target.y = rect.top + rect.height / 2;
-            target.radius = 14; // Rettangolo arrotondato sulle card
+            target.radius = 12;
 
             current.x = lerp(current.x, target.x, 0.3);
             current.y = lerp(current.y, target.y, 0.3);
@@ -116,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
             target.w = 24;
             target.h = 24;
-            target.radius = 50; // Cerchio perfetto
+            target.radius = 50;
 
             current.x = lerp(current.x, mouse.x, 0.35);
             current.y = lerp(current.y, mouse.y, 0.35);
@@ -129,7 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
         orb.style.height = `${current.h}px`;
         orb.style.left = `${current.x}px`;
         orb.style.top = `${current.y}px`;
-        orb.style.borderRadius = current.radius > 40 ? `${current.radius}%` : `${current.radius}px`;
+        orb.style.borderRadius = current.radius > 40 ? `50%` : `${current.radius}px`;
 
         requestAnimationFrame(renderCursor);
     }
