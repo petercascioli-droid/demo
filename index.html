@@ -9,18 +9,17 @@
 </head>
 <body>
 
-    <!-- Sfondo Animato Canvas (Autonomo) -->
-    <canvas id="bgCanvas"></canvas>
+    <!-- Sfondo e griglia circuiti -->
+    <div class="circuit-background"></div>
+    <div class="circuit-lines"></div>
 
-    <!-- Spotlight neon fissi -->
+    <!-- Spotlight neon -->
     <div class="neon-orb orb-1"></div>
     <div class="neon-orb orb-2"></div>
+    <div class="neon-orb orb-3"></div>
 
-    <!-- Cursore Custom con Pallina Orbitante -->
-    <div id="customCursor">
-        <div class="cursor-dot"></div>
-        <div class="orbiting-ball"></div>
-    </div>
+    <!-- Cursore Fisico Avanzato (Pallina orbitante con allungamento e centrifuga) -->
+    <div id="cursorBall"></div>
 
     <!-- Navbar -->
     <nav class="navbar">
@@ -48,7 +47,7 @@
         </div>
     </section>
 
-    <!-- SEZIONE 2: SERVIZI -->
+    <!-- SEZIONE 2: SERVIZI OTTIMIZZATI (8 Categorie Clean) -->
     <section id="servizi" class="container">
         <header class="section-header">
             <span class="service-tag">CATALOGO TECNICO</span>
@@ -58,6 +57,7 @@
 
         <div class="services-grid">
             
+            <!-- Servizio di Punta -->
             <div class="service-card featured-service">
                 <div class="service-img-box"><img src="1786016316055.png" alt="Micro-Soldering"></div>
                 <div class="service-info">
