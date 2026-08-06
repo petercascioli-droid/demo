@@ -3,38 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Servizi | Nexus Lab</title>
+    <title>Nexus Lab | Servizi e Riparazioni</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div id="cursorOrb"></div>
+    <!-- Sfondo digitale geometrico e circuiti -->
+    <div class="circuit-background"></div>
+    <div class="circuit-lines"></div>
 
+    <!-- Spotlight colorate di sfondo -->
     <div class="neon-orb orb-1"></div>
     <div class="neon-orb orb-2"></div>
+    <div class="neon-orb orb-3"></div>
 
+    <!-- Cursore interattivo con scia -->
+    <div id="cursorOrb"></div>
+
+    <!-- Navbar fissa Liquid Glass -->
     <nav class="navbar">
         <a href="index.html" class="logo-container">
             <div class="logo-icon">NX</div>
             <div class="logo-text">NEXUS<span>LAB</span></div>
         </a>
         <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="riparazioni.html" class="active-link">Servizi</a></li>
-            <li><a href="contatti.html">Contatti</a></li>
+            <li><a href="index.html#home">Home</a></li>
+            <li><a href="riparazioni.html" style="color: #fff; text-shadow: 0 0 10px rgba(0,243,255,0.4);">Servizi</a></li>
+            <li><a href="index.html#contatti">Contatti</a></li>
         </ul>
-        <a href="contatti.html" class="nav-btn">Preventivo</a>
+        <a href="index.html#contatti" class="nav-btn">Preventivo</a>
     </nav>
 
-    <main class="container page-content">
-        <header class="page-header">
-            <h1>Catalogo Servizi Hardware</h1>
-            <p>Protocolli ufficiali di diagnosi, sostituzione e micro-saldatura.</p>
+    <!-- SEZIONE SERVIZI (2 Colonne + Ultimo Centrato) -->
+    <section class="container" style="padding-top: 140px;">
+        <header class="section-header">
+            <span class="service-tag">CATALOGO TECNICO</span>
+            <h2>Servizi & Protocolli Hardware</h2>
+            <p>Interventi professionali eseguiti con strumentazione di precisione.</p>
         </header>
 
         <div class="services-grid-2col">
-            
             <div class="service-card">
                 <div class="service-img-box"><img src="1786016321662.png" alt="Battery"></div>
                 <div class="service-info">
@@ -143,23 +152,25 @@
                 </div>
             </div>
 
-            <!-- 13° SERVIZIO PERFETTAMENTE CENTRATO IN BASSO -->
+            <!-- 13° SERVIZIO: MICRO-SALDATURA BOARD LEVEL (CENTRATO) -->
             <div class="service-card centered-last">
-                <div class="service-img-box"><img src="1786016316055.png" alt="Diagnostics"></div>
+                <div class="service-img-box" style="background: #1a1a2e;">
+                    <img src="1786016316055.png" alt="Micro-Soldering">
+                </div>
                 <div class="service-info">
-                    <span class="service-tag">DIAGNOSTICS</span>
-                    <h3>Diagnostic Scan</h3>
-                    <p>Analisi PMIC, test di assorbimento e termografia infrarossi.</p>
+                    <span class="service-tag">ADVANCED LEVEL</span>
+                    <h3>Micro-Saldatura (Board Level)</h3>
+                    <p>Ripristino linee dati interrotte, ricostruzione piste su PCB multistrato e sostituzione chip BGA.</p>
                 </div>
             </div>
-
         </div>
-    </main>
+    </section>
 
     <footer>
         <p>&copy; 2026 Nexus Lab — Ingegneria e Riparazione Dispositivi Mobile</p>
     </footer>
 
+    <!-- Usa lo stesso script per mantenere l'interattività dell'orbita -->
     <script src="script.js"></script>
 </body>
 </html>
