@@ -6,7 +6,7 @@
 
 :root {
     --bg-color: #030508;
-    --glass-bg: rgba(10, 15, 25, 0.7);
+    --glass-bg: rgba(10, 15, 25, 0.75);
     --glass-border: rgba(0, 243, 255, 0.15);
     --accent: #00f3ff;
     --accent-purple: #9d00ff;
@@ -16,6 +16,9 @@
 
 html {
     scroll-behavior: smooth;
+    /* Impedisce comportamenti strani di zoom e overflow su mobile */
+    touch-action: pan-x pan-y;
+    -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -24,7 +27,7 @@ body {
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
     position: relative;
-    cursor: default; /* Cursore standard ripristinato */
+    cursor: default;
 }
 
 /* 1. SFONDO CANVAS CIRCUITO (AUTONOMO) */
@@ -62,22 +65,22 @@ body {
 .orb-2 { top: 50%; right: 10%; background: var(--accent-purple); }
 .orb-3 { bottom: 10%; left: 20%; background: var(--accent); }
 
-/* NAVBAR */
+/* NAVBAR RESPONSIVE OTTIMIZZATA */
 .navbar {
-    position: fixed; top: 20px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 900px;
+    position: fixed; top: 15px; left: 50%; transform: translateX(-50%); width: 92%; max-width: 900px;
     background: var(--glass-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-    border: 1px solid var(--glass-border); padding: 14px 30px; border-radius: 50px;
+    border: 1px solid var(--glass-border); padding: 12px 24px; border-radius: 50px;
     display: flex; justify-content: space-between; align-items: center; z-index: 1000;
     box-shadow: 0 10px 30px rgba(0,0,0,0.6);
 }
 
-.logo-container { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-.logo-icon { width: 32px; height: 32px; background: linear-gradient(135deg, var(--accent), var(--accent-purple)); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 800; color: #030508; font-size: 0.95rem; }
-.logo-text { font-weight: 700; font-size: 1.1rem; color: #fff; }
+.logo-container { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+.logo-icon { width: 28px; height: 28px; background: linear-gradient(135deg, var(--accent), var(--accent-purple)); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: 800; color: #030508; font-size: 0.85rem; }
+.logo-text { font-weight: 700; font-size: 1rem; color: #fff; }
 .logo-text span { color: var(--accent); }
 
-.nav-links { display: flex; list-style: none; gap: 25px; align-items: center; }
-.nav-links a { text-decoration: none; color: var(--text-muted); font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
+.nav-links { display: flex; list-style: none; gap: 20px; align-items: center; }
+.nav-links a { text-decoration: none; color: var(--text-muted); font-size: 0.85rem; font-weight: 500; transition: color 0.3s; }
 .nav-links a:hover { color: #fff; text-shadow: 0 0 10px rgba(255,255,255,0.4); }
 
 /* LAYOUT CONTAINER & SEZIONI */
@@ -140,7 +143,14 @@ section { min-height: 100vh; display: flex; flex-direction: column; justify-cont
 footer { text-align: center; padding: 40px 0; color: #64748b; font-size: 0.85rem; border-top: 1px solid rgba(255,255,255,0.05); }
 
 @media (max-width: 768px) {
-    .hero-content h1 { font-size: 2.5rem; }
+    .navbar {
+        padding: 10px 16px;
+        width: 94%;
+    }
+    .logo-text { font-size: 0.9rem; }
+    .nav-links { gap: 15px; }
+    .nav-links a { font-size: 0.8rem; }
+    .hero-content h1 { font-size: 2.3rem; }
     .services-grid { grid-template-columns: 1fr; }
     .contact-grid { grid-template-columns: 1fr; }
     .featured-service { grid-column: auto; }
