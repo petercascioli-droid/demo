@@ -2,162 +2,76 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Nexus Lab | Ingegneria e Riparazione</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P. CASCIOLI - Tech & Board Repair</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Sfondo e griglia circuiti -->
-    <div class="circuit-background"></div>
-    <div class="circuit-lines"></div>
-
-    <!-- Spotlight neon -->
-    <div class="neon-orb orb-1"></div>
-    <div class="neon-orb orb-2"></div>
-    <div class="neon-orb orb-3"></div>
-
-    <!-- Cursore Custom (Gestito al 100% da JS) -->
-    <div id="cursorOrb"></div>
+    <!-- Cursore Personalizzato -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-orbit">
+        <div class="orbit-ball"></div>
+    </div>
 
     <!-- Navbar -->
-    <nav class="navbar">
-        <a href="#home" class="logo-container">
-            <div class="logo-icon">NX</div>
-            <div class="logo-text">NEXUS<span>LAB</span></div>
-        </a>
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#servizi">Servizi</a></li>
-            <li><a href="#contatti">Contatti</a></li>
-        </ul>
+    <nav>
+        <div class="logo">P. CASCIOLI</div>
+        <div class="links">
+            <a href="#home">Home</a>
+            <a href="#servizi">Riparazioni</a>
+            <a href="#contatti">Contatti</a>
+        </div>
     </nav>
 
-    <!-- SEZIONE 1: HERO -->
-    <section id="home" class="hero-section container">
-        <div class="hero-content">
-            <span class="tech-badge">LABORATORIO TECNICO AVANZATO</span>
-            <h1>Ingegneria pura,<br>non solo riparazioni.</h1>
-            <p>Diagnostica di precisione, micro-saldature su schede logiche e componentistica originale. Riportiamo in vita l'hardware che gli altri danno per morto.</p>
-            <div class="hero-buttons">
-                <a href="#servizi" class="btn-primary">Esplora i Servizi</a>
-                <a href="#contatti" class="btn-secondary">Richiedi Preventivo</a>
-            </div>
-        </div>
-    </section>
+    <!-- Contenuto Principale (Single Page) -->
+    <main>
+        <section id="home" class="hero">
+            <h1>Riparazioni Hardware <br>& Micro-Saldatura</h1>
+            <p>Reverse engineering, diagnostica avanzata e riparazione schede madri.</p>
+        </section>
 
-    <!-- SEZIONE 2: SERVIZI OTTIMIZZATI (8 Categorie Clean) -->
-    <section id="servizi" class="container">
-        <header class="section-header">
-            <span class="service-tag">CATALOGO TECNICO</span>
-            <h2>Protocolli Hardware</h2>
-            <p>Interventi eseguiti con strumentazione da laboratorio.</p>
-        </header>
-
-        <div class="services-grid">
-            
-            <!-- Servizio di Punta (Spazia su 2 colonne su desktop) -->
-            <div class="service-card featured-service">
-                <div class="service-img-box"><img src="1786016316055.png" alt="Micro-Soldering"></div>
-                <div class="service-info">
-                    <span class="service-tag">ADVANCED LEVEL</span>
+        <!-- SEZIONE 2: SERVIZI OTTIMIZZATI (8 Categorie Clean) -->
+        <section id="servizi">
+            <h2>Le mie Riparazioni</h2>
+            <div class="grid">
+                <div class="card">
                     <h3>Micro-Saldatura & Board Repair</h3>
-                    <p>Ricostruzione piste su PCB multistrato, sostituzione IC, reballing chip BGA e ripristino linee dati interrotte sotto microscopio.</p>
+                    <p>Interventi di precisione sui chip e diagnostica dei circuiti.</p>
                 </div>
-            </div>
-
-            <div class="service-card">
-                <div class="service-img-box"><img src="1786016345832.png" alt="Display"></div>
-                <div class="service-info">
-                    <span class="service-tag">DISPLAY & LASER</span>
+                <div class="card">
                     <h3>Display & Back Glass</h3>
-                    <p>Rigenerazione pannelli OLED, sostituzione vetri anteriori e rimozione back cover tramite macchinario laser.</p>
+                    <p>Sostituzione schermi e vetri posteriori con macchinari dedicati.</p>
                 </div>
-            </div>
-
-            <div class="service-card">
-                <div class="service-img-box"><img src="1786016321662.png" alt="Battery"></div>
-                <div class="service-info">
-                    <span class="service-tag">POWER</span>
+                <div class="card">
                     <h3>Battery & BMS</h3>
-                    <p>Saldatura celle batteria con mantenimento del chip BMS originale per garantire salute reale al 100% nel sistema.</p>
+                    <p>Sostituzione celle e programmazione parametri batteria.</p>
                 </div>
-            </div>
-
-            <div class="service-card">
-                <div class="service-img-box"><img src="1786016336990.png" alt="Water Damage"></div>
-                <div class="service-info">
-                    <span class="service-tag">RECOVERY</span>
+                <div class="card">
                     <h3>Deossidazione & Dati</h3>
-                    <p>Lavaggio scheda logica ad ultrasuoni, ricerca cortocircuiti termici e recupero dati da dispositivi non accendibili.</p>
+                    <p>Recupero dati da smartphone caduti in acqua e lavaggio ultrasuoni.</p>
                 </div>
-            </div>
-
-            <div class="service-card">
-                <div class="service-img-box"><img src="1786016341734.png" alt="Port"></div>
-                <div class="service-info">
-                    <span class="service-tag">I/O HARDWARE</span>
+                <div class="card">
                     <h3>Power Delivery & Type-C</h3>
-                    <p>Sostituzione e saldatura connettori di ricarica, ripristino flex cable e circuiti integrati di ricarica rapida.</p>
+                    <p>Riparazione connettori di ricarica e integrati di alimentazione.</p>
                 </div>
-            </div>
-
-            <div class="service-card">
-                <div class="service-img-box"><img src="1786016334321.png" alt="Audio"></div>
-                <div class="service-info">
-                    <span class="service-tag">AUDIO & SENSORI</span>
+                <div class="card">
                     <h3>Audio & Moduli Biometrici</h3>
-                    <p>Sostituzione capsule auricolari, speaker, microfoni di cancellazione rumore e ripristino flex sensori di prossimità.</p>
+                    <p>Fix per microfoni, speaker, Face ID e sensori di impronte.</p>
                 </div>
-            </div>
-
-            <div class="service-card">
-                <div class="service-img-box"><img src="1786016347602.png" alt="Chassis"></div>
-                <div class="service-info">
-                    <span class="service-tag">MECHANICAL</span>
+                <div class="card">
                     <h3>Chassis & Tasti Fisici</h3>
-                    <p>Raddrizzamento telai piegati, trapianto completo su nuovi chassis e saldatura flex tasti volume/accensione.</p>
+                    <p>Raddrizzamento scocche, sostituzione tasti volume e accensione.</p>
                 </div>
             </div>
+        </section>
 
-        </div>
-    </section>
-
-    <!-- SEZIONE 3: CONTATTI -->
-    <section id="contatti" class="container">
-        <header class="section-header">
-            <span class="service-tag">COMMUNICATION</span>
-            <h2>Entriamo in Contatto</h2>
-            <p>Vieni in laboratorio o scrivici per una pre-diagnosi.</p>
-        </header>
-
-        <div class="contact-grid">
-            <div class="contact-details">
-                <div class="info-card">
-                    <h3>Drop-off & Laboratorio</h3>
-                    <p>Via Esempio 123, Roma (RM)<br>Dal Lunedì al Venerdì: 09:00 - 18:30</p>
-                </div>
-                <div class="info-card">
-                    <h3>Direct Line</h3>
-                    <p>Email: info@nexuslab.it<br>Supporto Tecnico: +39 333 123 4567</p>
-                </div>
-                <div class="social-btns">
-                    <a href="#" class="btn-social btn-whatsapp">WhatsApp</a>
-                    <a href="#" class="btn-social btn-instagram">Instagram</a>
-                </div>
-            </div>
-            
-            <div class="map-box">
-                <!-- Sostituisci src con il tuo vero link Google Maps embed -->
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2969.65424611099!2d12.4922309!3d41.8902102!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132f61b6532013ad%3A0x28f1c82e908503c4!2sColosseo!5e0!3m2!1sit!2sit!4v1700000000000" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2026 Nexus Lab — Engineered & Coded by P. Cascioli</p>
-    </footer>
+        <section id="contatti">
+            <h2>Pronto a resuscitare il tuo device?</h2>
+            <p>Mandami un messaggio per una diagnostica.</p>
+            <a href="mailto:tuamail@email.com" class="btn">Contattami</a>
+        </section>
+    </main>
 
     <script src="script.js"></script>
 </body>
