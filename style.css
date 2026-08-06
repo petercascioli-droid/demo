@@ -12,7 +12,6 @@
     --font-mono: 'JetBrains Mono', monospace;
 }
 
-/* Fix mobile viewport & scroll */
 html {
     scroll-behavior: smooth;
     overscroll-behavior: none;
@@ -36,7 +35,6 @@ body {
     position: relative;
 }
 
-/* --- ANIMAZIONI SFONDO NEON GLOW --- */
 .neon-orb {
     position: fixed;
     border-radius: 50%;
@@ -68,7 +66,6 @@ body {
     100% { transform: translate(30px, 50px) scale(1.15); opacity: 0.8; }
 }
 
-/* Navbar Navbar Glass */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -112,7 +109,6 @@ body {
     color: var(--accent);
 }
 
-/* Pulsanti Tech */
 .btn-primary, .btn-secondary {
     display: inline-flex;
     align-items: center;
@@ -150,7 +146,6 @@ body {
     border-color: var(--accent);
 }
 
-/* Hero Section */
 .hero {
     display: grid;
     grid-template-columns: 1fr;
@@ -196,8 +191,7 @@ body {
     gap: 0.6rem;
 }
 
-/* Neon Box & Cards */
-.tech-card-glass, .card, .service-card {
+.tech-card-glass, .card {
     background: var(--bg-card);
     border: 1px solid var(--border-glass);
     border-radius: 16px;
@@ -230,26 +224,57 @@ body {
     font-size: 0.78rem;
 }
 
-/* Griglia Servizi 13 Moduli */
-.services-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.2rem;
+/* --- NUOVO STILE DETTAGLIATO PER I 13 SERVIZI E LE 13 IMMAGINI --- */
+.services-grid-detailed {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
     margin-top: 1.5rem;
 }
 
-.service-card {
-    padding: 1.3rem;
+.service-row {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-card);
+    border: 1px solid var(--border-glass);
+    border-radius: 16px;
+    overflow: hidden;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    transition: all 0.3s ease;
 }
 
-.service-card h3 {
-    font-size: 1.1rem;
+.service-img-box {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    background: #000;
+    border-bottom: 1px solid var(--border-glass);
+}
+
+.service-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.service-row:hover .service-img-box img {
+    transform: scale(1.05);
+}
+
+.service-info {
+    padding: 1.5rem;
+}
+
+.service-info h3 {
+    font-size: 1.2rem;
     margin-bottom: 0.5rem;
     color: var(--text-main);
 }
 
-.service-card p {
-    font-size: 0.88rem;
+.service-info p {
+    font-size: 0.9rem;
     color: var(--text-muted);
 }
 
@@ -264,8 +289,8 @@ body {
     border-radius: 4px;
     margin-bottom: 0.6rem;
 }
+/* ------------------------------------------------------------- */
 
-/* Quick Specs & Layouts */
 .quick-specs {
     padding: 2.5rem 5%;
     background: rgba(0, 0, 0, 0.25);
@@ -312,7 +337,6 @@ body {
     margin-bottom: 0.3rem;
 }
 
-/* Timeline */
 .process-timeline {
     margin-top: 2.5rem;
 }
@@ -344,13 +368,6 @@ footer {
     font-size: 0.8rem;
 }
 
-/* Tablet e Desktop */
-@media (min-width: 768px) {
-    .services-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
 @media (min-width: 900px) {
     .navbar {
         padding: 1.2rem 8%;
@@ -376,10 +393,6 @@ footer {
     .hero h1 {
         font-size: 3.2rem;
     }
-    .services-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1.5rem;
-    }
     .grid-3 {
         grid-template-columns: repeat(3, 1fr);
     }
@@ -388,5 +401,23 @@ footer {
     }
     .container {
         padding: 4rem 8%;
+    }
+
+    .service-row {
+        flex-direction: row;
+        align-items: center;
+    }
+    
+    .service-img-box {
+        width: 300px;
+        height: 100%;
+        min-height: 180px;
+        border-bottom: none;
+        border-right: 1px solid var(--border-glass);
+    }
+    
+    .service-info {
+        flex: 1;
+        padding: 2rem;
     }
 }
