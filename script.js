@@ -59,9 +59,9 @@ document.addEventListener("DOMContentLoaded", () => {
     animateBackground();
 
 
-    // --- 2. COSTELLAZIONI IN PARALLASSE (Movimento col mouse) ---
+    // --- 2. COSTELLAZIONI IN PARALLASSE (Movimento col mouse/touch) ---
     const starsContainer = document.getElementById('stars-container');
-    const numStars = 60;
+    const numStars = 50;
     const stars = [];
 
     for (let i = 0; i < numStars; i++) {
@@ -88,6 +88,13 @@ document.addEventListener("DOMContentLoaded", () => {
         mouse.x = e.clientX;
         mouse.y = e.clientY;
     });
+
+    document.addEventListener('touchmove', (e) => {
+        if (e.touches.length > 0) {
+            mouse.x = e.touches[0].clientX;
+            mouse.y = e.touches[0].clientY;
+        }
+    }, { passive: true });
 
     const lerp = (start, end, amt) => (1 - amt) * start + amt * end;
 
