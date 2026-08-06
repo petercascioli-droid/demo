@@ -3,47 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Hardware Lab | Home</title>
+    <title>Nexus Lab | Ingegneria e Riparazione</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Sfondo interattivo con nodi energetici -->
-    <div class="circuit-bg-canvas" id="circuitCanvas"></div>
+    <canvas id="circuitCanvas"></canvas>
 
     <div class="neon-orb orb-1"></div>
     <div class="neon-orb orb-2"></div>
 
     <nav class="navbar">
-        <a href="index.html" class="logo">HARDWARE<span>LAB</span></a>
+        <a href="index.html" class="logo-container">
+            <div class="logo-icon">NX</div>
+            <div class="logo-text">NEXUS<span>LAB</span></div>
+        </a>
         <ul class="nav-links">
             <li><a href="riparazioni.html">Servizi</a></li>
             <li><a href="diagnostica.html">Lab</a></li>
+            <li><a href="contatti.html">Contatti</a></li>
         </ul>
-        <a href="contatti.html" class="btn-primary">Contattaci</a>
+        <a href="contatti.html" class="btn-primary">Richiedi Preventivo</a>
     </nav>
 
     <main class="container hero-section">
         <div class="hero-content">
-            <span class="service-tag">ADVANCED HARDWARE LAB</span>
+            <span class="tag-badge">ADVANCED HARDWARE & MICRO-SOLDERING</span>
             <h1>Ingegneria e Riparazione Dispositivi Mobile</h1>
-            <p>Laboratorio specializzato in micro-saldatura, rigenerazione display OLED e diagnosi avanzata di schede madri per smartphone e tablet.</p>
+            <p>Laboratorio specializzato in micro-saldatura avanzata, rigenerazione display OLED e diagnosi termografica di schede madri a Roma.</p>
             
-            <div class="interactive-banner">
-                <span class="pulse-dot"></span> 
-                <span>Easter Egg: Clicca sullo sfondo per ricollegare i circuiti energetici del lab!</span>
-            </div>
-
             <div class="hero-buttons">
                 <a href="riparazioni.html" class="btn-primary">Esplora Servizi</a>
-                <a href="diagnostica.html" class="btn-secondary">Sistema Lab</a>
+                <a href="contatti.html" class="btn-secondary">Vedi Posizione & Contatti</a>
+            </div>
+
+            <!-- Informazioni rapide e widget mappa nella Home -->
+            <div class="home-quick-info">
+                <div class="quick-box">
+                    <span class="quick-icon">📍</span>
+                    <div>
+                        <h4>Dove Siamo</h4>
+                        <p>Roma, RM - Via del Laboratorio</p>
+                    </div>
+                </div>
+                <div class="quick-box">
+                    <span class="quick-icon">💬</span>
+                    <div>
+                        <h4>WhatsApp Business</h4>
+                        <p>Risposta rapida per preventivi</p>
+                    </div>
+                </div>
+                <div class="quick-box">
+                    <span class="quick-icon">⚡</span>
+                    <div>
+                        <h4>Orari di Apertura</h4>
+                        <p>Lun - Sab: 09:00 - 19:30</p>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
 
     <footer>
-        <p>&copy; 2026 Hardware Lab — Ingegneria e Riparazione Dispositivi Mobile</p>
+        <p>&copy; 2026 Nexus Lab — P.IVA / Ingegneria e Riparazione Dispositivi Mobile</p>
     </footer>
 
     <script src="script.js"></script>
