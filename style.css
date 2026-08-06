@@ -49,9 +49,9 @@ body {
 }
 
 .service-row {
-    display: flex !important;
-    align-items: center !important;
-    gap: 24px !important;
+    display: flex;
+    align-items: center;
+    gap: 24px;
     background: rgba(15, 23, 42, 0.7);
     border: 1px solid rgba(0, 243, 255, 0.15);
     padding: 20px;
@@ -64,31 +64,28 @@ body {
     box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
 }
 
-/* Box Immagine - Dimensioni rigorose con !important per evitare conflitti */
-.services-grid-detailed .service-row .service-img-box {
-    width: 130px !important;
-    min-width: 130px !important;
-    height: 90px !important;
-    max-height: 90px !important;
-    flex: 0 0 130px !important;
+/* Box Immagine - Dimensioni fisse per evitare scompensi */
+.service-img-box {
+    width: 130px;
+    min-width: 130px;
+    height: 90px;
     border-radius: 8px;
-    overflow: hidden !important;
+    overflow: hidden;
     background: #000;
     border: 1px solid rgba(0, 243, 255, 0.3);
-    position: relative;
+    flex-shrink: 0;
 }
 
-.services-grid-detailed .service-row .service-img-box img {
-    width: 130px !important;
-    height: 90px !important;
-    max-width: none !important;
-    object-fit: cover !important;
-    display: block !important;
+.service-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 /* Informazioni Testuali del Servizio */
 .service-info {
-    flex-grow: 1 !important;
+    flex-grow: 1;
 }
 
 .service-tag {
@@ -101,33 +98,34 @@ body {
 }
 
 .service-info h3 {
-    margin: 4px 0 6px 0 !important;
-    font-size: 1.15rem !important;
-    color: #ffffff !important;
-    font-weight: 600 !important;
+    margin: 4px 0 6px 0;
+    font-size: 1.15rem;
+    color: #ffffff;
+    font-weight: 600;
 }
 
 .service-info p {
-    font-size: 0.88rem !important;
-    color: #94a3b8 !important;
-    line-height: 1.4 !important;
+    font-size: 0.88rem;
+    color: #94a3b8;
+    line-height: 1.4;
 }
 
 /* Responsive per smartphone */
 @media (max-width: 600px) {
     .service-row {
-        flex-direction: column !important;
-        align-items: flex-start !important;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
     }
     
-    .services-grid-detailed .service-row .service-img-box {
-        width: 100% !important;
-        min-width: 100% !important;
-        height: 160px !important;
+    .service-img-box {
+        width: 100%;
+        min-width: 100%;
+        height: 160px;
     }
 
-    .services-grid-detailed .service-row .service-img-box img {
-        width: 100% !important;
-        height: 160px !important;
+    .service-img-box img {
+        width: 100%;
+        height: 160px;
     }
 }
