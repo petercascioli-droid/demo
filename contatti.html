@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Contatti & Posizione | Nexus Lab</title>
+    <title>Contatti | Nexus Lab</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <canvas id="circuitCanvas"></canvas>
+    <div id="cursorOrb"></div>
 
     <div class="neon-orb orb-1"></div>
     <div class="neon-orb orb-2"></div>
@@ -20,60 +20,45 @@
             <div class="logo-text">NEXUS<span>LAB</span></div>
         </a>
         <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
             <li><a href="riparazioni.html">Servizi</a></li>
-            <li><a href="diagnostica.html">Lab</a></li>
-            <li><a href="contatti.html" class="active">Contatti</a></li>
+            <li><a href="contatti.html" class="active-link">Contatti</a></li>
         </ul>
-        <a href="contatti.html" class="btn-primary">Contattaci</a>
+        <a href="contatti.html" class="nav-btn">Preventivo</a>
     </nav>
 
     <main class="container page-content">
         <header class="page-header">
-            <h1>Contatta il Laboratorio</h1>
-            <p>Parla direttamente con i tecnici, invia foto del danno o vieni a trovarci in sede.</p>
+            <h1>Contatti & Posizione</h1>
+            <p>Parla con i tecnici o vieni a trovarci in laboratorio.</p>
         </header>
 
         <div class="contact-container">
-            <!-- Colonna Info e Social -->
-            <div class="contact-info-col">
+            <div>
                 <div class="info-card">
-                    <div class="info-card-header">
-                        <span class="quick-icon">💬</span>
-                        <h3>Assistenza WhatsApp</h3>
+                    <h3>WhatsApp Business</h3>
+                    <p>Scrivici per preventivi immediati e stato riparazioni.</p>
+                    <div class="social-btns">
+                        <a href="https://wa.me/" target="_blank" class="btn-social btn-whatsapp">Apri Chat</a>
                     </div>
-                    <p>Il canale più veloce per ricevere un preventivo immediato o verificare lo stato di riparazione del tuo dispositivo.</p>
-                    <a href="https://wa.me/" target="_blank" class="btn-social btn-whatsapp">Apri Chat WhatsApp</a>
                 </div>
 
                 <div class="info-card">
-                    <div class="info-card-header">
-                        <span class="quick-icon">📸</span>
-                        <h3>Canale Instagram</h3>
+                    <h3>Instagram Lab</h3>
+                    <p>Guarda i reel sulle micro-saldature al microscopio.</p>
+                    <div class="social-btns">
+                        <a href="https://instagram.com" target="_blank" class="btn-social btn-instagram">Seguici</a>
                     </div>
-                    <p>Segui i nostri reel sul dietro le quinte, le micro-saldature al microscopio e le rigenerazioni display.</p>
-                    <a href="https://instagram.com" target="_blank" class="btn-social btn-instagram">Seguici su Instagram</a>
                 </div>
 
                 <div class="info-card">
-                    <div class="info-card-header">
-                        <span class="quick-icon">🕒</span>
-                        <h3>Orari & Sede</h3>
-                    </div>
-                    <p><strong>Indirizzo:</strong> Roma, RM<br>
-                    <strong>Orari:</strong> Lunedì - Sabato (09:00 - 19:30)<br>
-                    Domenica: Chiuso</p>
+                    <h3>Orari & Sede</h3>
+                    <p>Roma, RM<br>Lun - Sab: 09:00 - 19:30</p>
                 </div>
             </div>
 
-            <!-- Colonna Mappa Interattiva -->
-            <div class="map-col">
-                <div class="info-card-header" style="margin-bottom: 15px;">
-                    <span class="quick-icon">🗺️</span>
-                    <h3>Dove Trovarci</h3>
-                </div>
-                <div class="map-wrapper">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d94874.6738914844!2d12.42145395!3d41.9027835!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132f6196f9928ebb%3A0xb90f770693656e36!2sRoma%20RM!5e0!3m2!1sit!2sit!4v1650000000000!5m2!1sit!2sit" allowfullscreen="" loading="lazy"></iframe>
-                </div>
+            <div class="map-box">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d94874.6738914844!2d12.42145395!3d41.9027835!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132f6196f9928ebb%3A0xb90f770693656e36!2sRoma%20RM!5e0!3m2!1sit!2sit!4v1650000000000!5m2!1sit!2sit" allowfullscreen="" loading="lazy"></iframe>
             </div>
         </div>
     </main>
