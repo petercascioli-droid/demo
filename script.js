@@ -1,35 +1,33 @@
-// Selezioniamo gli elementi del cursore personalizzato
-const dot = document.querySelector('.cursor-dot');
-const orbit = document.querySelector('.cursor-orbit');
+document.addEventListener("DOMContentLoaded", () => {
+    // Selezioniamo il contenitore principale del cursore
+    const cursorWrapper = document.getElementById('cursor-wrapper');
+    const cursorOrbit = document.querySelector('.cursor-orbit');
 
-// Ascoltiamo il movimento del mouse ovunque nello schermo
-window.addEventListener('mousemove', (e) => {
-    const posX = e.clientX;
-    const posY = e.clientY;
-
-    // La pallina centrale (dot) segue esattamente e istantaneamente il mouse
-    dot.style.left = `${posX}px`;
-    dot.style.top = `${posY}px`;
-
-    // Anche il contenitore dell'orbita segue il mouse esattamente
-    // (La rotazione continua è gestita dal CSS tramite @keyframes spin)
-    orbit.style.left = `${posX}px`;
-    orbit.style.top = `${posY}px`;
-});
-
-// Aggiungiamo un feedback visivo al cursore quando passa sopra link o card
-const interactables = document.querySelectorAll('a, button, .card');
-
-interactables.forEach(el => {
-    el.addEventListener('mouseenter', () => {
-        // Quando entri in un elemento cliccabile, l'orbita si allarga
-        orbit.style.width = '60px';
-        orbit.style.height = '60px';
+    // Il cursore segue esattamente il mouse ovunque
+    window.addEventListener('mousemove', (e) => {
+        cursorWrapper.style.left = `${e.clientX}px`;
+        cursorWrapper.style.top = `${e.clientY}px`;
     });
-    
-    el.addEventListener('mouseleave', () => {
-        // Quando esci, torna alla dimensione normale
-        orbit.style.width = '45px';
-        orbit.style.height = '45px';
+
+    // Effetto Hover sui link e le card del sito
+    const interactiveSelectors = '.service-card, .info-card, .btn-primary, .btn-secondary, .btn-social, .nav-links a, .logo-container';
+    const interactables = document.querySelectorAll(interactiveSelectors);
+
+    interactables.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            // Quando passi su un elemento interattivo, l'orbita si allarga
+            cursorOrbit.style.width = '65px';
+            cursorOrbit.style.height = '65px';
+            cursorOrbit.style.backgroundColor = 'rgba(0, 243, 255, 0.05)';
+            cursorOrbit.style.border = '1px solid rgba(0, 243, 255, 0.4)';
+        });
+        
+        el.addEventListener('mouseleave', () => {
+            // Quando esci, torna normale
+            cursorOrbit.style.width = '45px';
+            cursorOrbit.style.height = '45px';
+            cursorOrbit.style.backgroundColor = 'transparent';
+            cursorOrbit.style.border = 'none';
+        });
     });
 });
