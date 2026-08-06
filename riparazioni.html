@@ -2,63 +2,120 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Specifiche Riparazioni | Hardware Lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Servizi & Specifiche | Hardware Lab</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+
+    <div class="neon-orb orb-1"></div>
+    <div class="neon-orb orb-2"></div>
 
     <nav class="navbar">
         <div class="logo">HARDWARE<span>LAB</span></div>
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
-            <li><a href="riparazioni.html" class="active">Servizi & Schede</a></li>
-            <li><a href="diagnostica.html">Laboratorio BGA</a></li>
+            <li><a href="riparazioni.html" class="active">Servizi</a></li>
+            <li><a href="diagnostica.html">Lab</a></li>
         </ul>
-        <a href="riparazioni.html" class="btn-primary">Richiedi Checkup</a>
+        <a href="riparazioni.html" class="btn-primary">Checkup</a>
     </nav>
 
     <main class="container page-content">
         <header class="page-header">
-            <h1>Protocolli di Riparazione</h1>
-            <p>Specifiche di intervento calibrate per ogni tipologia di componente elettronico.</p>
+            <h1>Catalogo Servizi Hardware</h1>
+            <p>Protocolli ufficiali di diagnosi, sostituzione e micro-saldatura per Smartphone e Tablet.</p>
         </header>
 
-        <!-- Sezione Smartphone -->
-        <section class="repair-detail-block">
-            <div class="repair-img-placeholder smartphone-bg">
-                <span class="tag">Smartphone High-End</span>
+        <!-- Griglia dei 13 Servizi Presi dallo Screenshot -->
+        <div class="services-grid">
+            
+            <div class="service-card neon-hover">
+                <div class="service-tag">POWER</div>
+                <h3>Battery Replacement</h3>
+                <p>Sostituzione celle ad alta densità con programmatore BMS per ripristinare il livello di salute 100% e cicli di carica originali.</p>
             </div>
-            <div class="repair-text">
-                <h2>Riparazione & Ricostruzione Smartphone</h2>
-                <ul class="spec-list">
-                    <li><strong>Display & Digitizer:</strong> Installazione moduli ad alta frequenza di aggiornamento (120Hz/144Hz) con sigillatura adesiva IP68 originale.</li>
-                    <li><strong>Sostituzione IC Audio / Touch:</strong> Risoluzione di problemi di risposta tattile o audio assente tramite reballing del chip dedicato.</li>
-                    <li><strong>Connettori USB-C / Lightning:</strong> Saldatura ad aria calda di porte fisiche danneggiate senza danneggiare la scheda circostante.</li>
-                    <li><strong>Moduli Fotocamera & OIS:</strong> Calibrazione hardware del sistema di stabilizzazione ottica e lenti zaffiro.</li>
-                </ul>
-            </div>
-        </section>
 
-        <!-- Sezione Tablet & Foldable -->
-        <section class="repair-detail-block reverse">
-            <div class="repair-img-placeholder tablet-bg">
-                <span class="tag">Tablet & Display Estesi</span>
+            <div class="service-card neon-hover">
+                <div class="service-tag">DISPLAY & LASER</div>
+                <h3>Rigenerazione Display & Laser Cover</h3>
+                <p>Rigenerazione del solo vetro anteriore su display OLED/AMOLED di ogni tipo e rimozione/sostituzione back cover posteriore in vetro tramite Laser Machine.</p>
             </div>
-            <div class="repair-text">
-                <h2>Interventi su Tablet & Dispositivi Pieghevoli</h2>
-                <ul class="spec-list">
-                    <li><strong>Laminazione OCA Vetro:</strong> Separazione del solo vetro rotto dal pannello LCD/OLED tramite filo in molibdeno da 0.03mm per preservare il pannello originale.</li>
-                    <li><strong>Ricostruzione Flex Cavo Pieghevoli:</strong> Saldatura a micro-punti di cavi flessibili soggetti a usura sulle cerniere.</li>
-                    <li><strong>Sostituzione Batterie ad Alta Capacità:</strong> Gestione di pacchi batteria multipolare con bilanciamento della carica.</li>
-                </ul>
+
+            <div class="service-card neon-hover">
+                <div class="service-tag">SCREEN</div>
+                <h3>Screen Repair / Replacement</h3>
+                <p>Sostituzione completa del blocco schermo (OLED/LCD) ad alta frequenza di aggiornamento con ricalibrazione del chip touch e del TrueTone/Haptic.</p>
             </div>
-        </section>
+
+            <div class="service-card neon-hover">
+                <div class="service-tag">HARDWARE</div>
+                <h3>Charge Port Repair</h3>
+                <p>Sostituzione o micro-saldatura del connettore USB-C / Lightning con verifica delle linee di ricarica rapida e chip controller Power Delivery.</p>
+            </div>
+
+            <div class="service-card neon-hover">
+                <div class="service-tag">SYSTEM</div>
+                <h3>Software Problems</h3>
+                <p>Ripristino da loop d'avvio (Bootloop), debrick di sistema, recupero firmware corrotto e risoluzione blocchi software o aggiornamenti falliti.</p>
+            </div>
+
+            <div class="service-card neon-hover">
+                <div class="service-tag">RECOVER</div>
+                <h3>Water-Damage Repair</h3>
+                <p>Lavaggio ultrasuoni in bagno anidro della scheda madre, deossidazione chimica e ricostruzione delle piste corrose dall'acqua o dai liquidi.</p>
+            </div>
+
+            <div class="service-card neon-hover">
+                <div class="service-tag">AUDIO</div>
+                <h3>Microphone / Speaker Repair</h3>
+                <p>Sostituzione capsule auricolari, microfoni ambiente con cancellazione del rumore e speaker per la riproduzione audio stereo pulita.</p>
+            </div>
+
+            <div class="service-card neon-hover">
+                <div class="service-tag">AUDIO</div>
+                <h3>Speaker Repair</h3>
+                <p>Ripristino altoparlanti principali gracchianti o assenti, pulizia membrane acustiche e sostituzione moduli acustici dedicati.</p>
+            </div>
+
+            <div class="service-card neon-hover">
+                <div class="service-tag">TABLET</div>
+                <h3>Tablet Repair</h3>
+                <p>Interventi dedicati su schermi di grandi dimensioni, sostituzione connettori saldati su scheda madre, batterie ad ampie celle e digitiizer touch.</p>
+            </div>
+
+            <div class="service-card neon-hover">
+                <div class="service-tag">MECHANICAL</div>
+                <h3>Power Button Repair</h3>
+                <p>Ripristino o sostituzione del flex interno del tasto d'accensione, compresi i sensori biometrici o impronte digitali (Touch ID/Biometric Flex).</p>
+            </div>
+
+            <div class="service-card neon-hover">
+                <div class="service-tag">MECHANICAL</div>
+                <h3>Button Repair</h3>
+                <p>Sostituzione switch meccanici per i tasti del volume, selettori Mute/Silenzioso e flex ribbon usurati o danneggiati da urti.</p>
+            </div>
+
+            <div class="service-card neon-hover">
+                <div class="service-tag">BODY</div>
+                <h3>Case Repair</h3>
+                <p>Raddrizzamento o sostituzione completa dello chassis/telaio in alluminio o titanio per garantire il corretto alloggiamento dei componenti interni.</p>
+            </div>
+
+            <div class="service-card neon-hover">
+                <div class="service-tag">DIAGNOSTICS</div>
+                <h3>Diagnostic Scan</h3>
+                <p>Analisi completa del circuito integrato (PMIC), test di assorbimento in corrente continua, diagnosi termografica infrarossi e report dello stato dei componenti.</p>
+            </div>
+
+        </div>
     </main>
 
     <footer>
         <p>&copy; 2026 Hardware Lab — Ingegneria e Riparazione Dispositivi Mobile</p>
     </footer>
 
+    <script src="script.js"></script>
 </body>
 </html>
