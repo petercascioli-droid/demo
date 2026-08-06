@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     
-    // --- 1. SFONDO ANIMATO CANVAS (Autonomo / Circuito Nanotech) ---
+    // --- 1. SFONDO ANIMATO CANVAS (Circuito Nanotech Autonomo) ---
     const canvas = document.getElementById('bgCanvas');
     const ctx = canvas.getContext('2d');
     
@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    // Generazione particelle autonome
     const particleCount = Math.floor(window.innerWidth / 35);
     const particles = [];
     
@@ -32,7 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
         ctx.strokeStyle = 'rgba(0, 243, 255, 0.08)';
         ctx.lineWidth = 1;
 
-        // Muovi e collega particelle
         for (let i = 0; i < particles.length; i++) {
             let p = particles[i];
             p.x += p.vx;
@@ -45,7 +43,6 @@ document.addEventListener("DOMContentLoaded", () => {
             ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
             ctx.fill();
 
-            // Collega con linee se vicine
             for (let j = i + 1; j < particles.length; j++) {
                 let p2 = particles[j];
                 let dist = Math.hypot(p.x - p2.x, p.y - p2.y);
@@ -62,77 +59,53 @@ document.addEventListener("DOMContentLoaded", () => {
     animateBackground();
 
 
-    // --- 2. CURSORE CUSTOM PRECISO & SNAP FLUIDO ---
-    const orb = document.getElementById('cursorOrb');
-    const ring = orb.querySelector('.cursor-ring');
-    
+    // --- 2. COSTELLAZIONI IN PARALLASSE (Movimento col mouse) ---
+    const starsContainer = document.getElementById('stars-container');
+    const numStars = 60;
+    const stars = [];
+
+    for (let i = 0; i < numStars; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        const size = Math.random() * 2.5 + 1;
+        star.style.width = `${size}px`;
+        star.style.height = `${size}px`;
+        
+        const initialX = Math.random() * window.innerWidth;
+        const initialY = Math.random() * window.innerHeight;
+        
+        star.style.left = `${initialX}px`;
+        star.style.top = `${initialY}px`;
+        
+        starsContainer.appendChild(star);
+        stars.push({ el: star, x: initialX, y: initialY, depth: Math.random() * 0.03 + 0.005 });
+    }
+
     let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
-    let current = { x: mouse.x, y: mouse.y, w: 24, h: 24, radius: 50 };
-    let target = { x: mouse.x, y: mouse.y, w: 24, h: 24, radius: 50 };
-    let targetElement = null;
+    let currentMouse = { x: mouse.x, y: mouse.y };
 
     document.addEventListener('mousemove', (e) => {
         mouse.x = e.clientX;
         mouse.y = e.clientY;
     });
 
-    const interactiveSelectors = '.service-card, .info-card, .btn-primary, .btn-secondary, .btn-social, .nav-links a, .logo-container';
-    
-    document.querySelectorAll(interactiveSelectors).forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            targetElement = el;
-            ring.style.borderColor = '#ffffff';
-            ring.style.boxShadow = '0 0 20px #ffffff';
-        });
-
-        el.addEventListener('mouseleave', () => {
-            setTimeout(() => {
-                const hoveredNow = document.querySelector(':hover');
-                if (!hoveredNow || !hoveredNow.closest(interactiveSelectors)) {
-                    targetElement = null;
-                    ring.style.borderColor = 'var(--accent)';
-                    ring.style.boxShadow = '0 0 15px rgba(0, 243, 255, 0.4)';
-                }
-            }, 10);
-        });
-    });
-
     const lerp = (start, end, amt) => (1 - amt) * start + amt * end;
 
-    function renderCursor() {
-        if (targetElement) {
-            const rect = targetElement.getBoundingClientRect();
-            target.w = rect.width + 10;
-            target.h = rect.height + 10;
-            target.x = rect.left + rect.width / 2;
-            target.y = rect.top + rect.height / 2;
-            target.radius = 14;
+    function animateStars() {
+        currentMouse.x = lerp(currentMouse.x, mouse.x, 0.08);
+        currentMouse.y = lerp(currentMouse.y, mouse.y, 0.08);
 
-            current.x = lerp(current.x, target.x, 0.3);
-            current.y = lerp(current.y, target.y, 0.3);
-            current.w = lerp(current.w, target.w, 0.3);
-            current.h = lerp(current.h, target.h, 0.3);
-            current.radius = lerp(current.radius, target.radius, 0.3);
-        } else {
-            target.w = 24;
-            target.h = 24;
-            target.radius = 50;
+        const offsetX = (currentMouse.x - window.innerWidth / 2);
+        const offsetY = (currentMouse.y - window.innerHeight / 2);
 
-            current.x = lerp(current.x, mouse.x, 0.35);
-            current.y = lerp(current.y, mouse.y, 0.35);
-            current.w = lerp(current.w, target.w, 0.3);
-            current.h = lerp(current.h, target.h, 0.3);
-            current.radius = lerp(current.radius, target.radius, 0.3);
-        }
+        stars.forEach(star => {
+            const moveX = offsetX * star.depth;
+            const moveY = offsetY * star.depth;
+            star.el.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        });
 
-        orb.style.width = `${current.w}px`;
-        orb.style.height = `${current.h}px`;
-        orb.style.left = `${current.x}px`;
-        orb.style.top = `${current.y}px`;
-        orb.style.borderRadius = current.radius > 40 ? `${current.radius}%` : `${current.radius}px`;
-
-        requestAnimationFrame(renderCursor);
+        requestAnimationFrame(animateStars);
     }
 
-    renderCursor();
+    animateStars();
 });
