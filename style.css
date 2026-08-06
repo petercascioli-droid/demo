@@ -136,7 +136,7 @@ body {
     color: var(--text-muted);
     font-size: 0.9rem;
     font-weight: 500;
-    transition: 0.3s;
+    transition: color 0.3s;
 }
 
 .nav-links a:hover {
@@ -144,15 +144,7 @@ body {
     text-shadow: 0 0 10px rgba(255,255,255,0.4);
 }
 
-.nav-btn {
-    background: var(--accent);
-    color: #030508 !important;
-    padding: 8px 18px;
-    border-radius: 20px;
-    font-weight: 600;
-}
-
-/* CURSORE INTERATTIVO E METEORITE */
+/* CURSORE PRINCIPALE (PALLINA CHE ORBITA) */
 #cursorOrb {
     position: fixed;
     width: 14px;
@@ -162,19 +154,22 @@ body {
     pointer-events: none;
     z-index: 9999;
     box-shadow: 0 0 20px var(--accent), 0 0 40px var(--accent);
-    transform: translate(-50%, -50%);
-    will-change: transform, width, height, left, top;
-    transition: background 0.3s, border 0.3s, box-shadow 0.3s, border-radius 0.3s;
+    will-change: transform, width, height, left, top, border-radius;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.meteor-tail {
+/* PUNTI CHE COMPONGONO LA SCIA CURVA */
+.meteor-tail-dot {
     position: fixed;
     pointer-events: none;
-    background: linear-gradient(90deg, rgba(0,243,255,0.8), transparent);
-    height: 4px;
-    border-radius: 2px;
     z-index: 9998;
-    transform-origin: left center;
+    border-radius: 50%;
+    background: var(--accent);
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px rgba(0,243,255,0.5);
+    will-change: left, top, opacity;
 }
 
 .container {
@@ -220,9 +215,9 @@ section {
     border-radius: 10px;
     text-decoration: none;
     font-weight: 600;
-    transition: 0.3s;
+    transition: box-shadow 0.3s, transform 0.2s;
 }
-.btn-primary:hover { box-shadow: 0 0 25px rgba(0, 243, 255, 0.6); }
+.btn-primary:hover { box-shadow: 0 0 25px rgba(0, 243, 255, 0.6); transform: translateY(-1px); }
 
 .btn-secondary {
     background: transparent;
@@ -232,20 +227,13 @@ section {
     border-radius: 10px;
     text-decoration: none;
     font-weight: 600;
-    transition: 0.3s;
+    transition: all 0.3s;
 }
-.btn-secondary:hover { background: rgba(0, 243, 255, 0.1); }
+.btn-secondary:hover { background: rgba(0, 243, 255, 0.1); border-color: var(--accent); }
 
 /* SERVIZI A 2 COLONNE + ULTIMO CENTRATO */
-.section-header {
-    margin-bottom: 40px;
-}
-.section-header h2 {
-    font-size: 2.3rem;
-    font-weight: 800;
-    color: #fff;
-    margin-bottom: 8px;
-}
+.section-header { margin-bottom: 40px; }
+.section-header h2 { font-size: 2.3rem; font-weight: 800; color: #fff; margin-bottom: 8px; }
 .section-header p { color: var(--text-muted); }
 
 .services-grid-2col {
@@ -266,111 +254,55 @@ section {
     transition: border-color 0.3s, transform 0.2s;
 }
 
-.service-card:hover {
-    border-color: rgba(0, 243, 255, 0.6);
-}
+.service-card:hover { border-color: rgba(0, 243, 255, 0.6); }
 
 .service-img-box {
-    width: 90px;
-    min-width: 90px;
-    height: 70px;
-    border-radius: 8px;
-    overflow: hidden;
-    background: #000;
-    border: 1px solid rgba(0, 243, 255, 0.2);
+    width: 90px; min-width: 90px; height: 70px; border-radius: 8px; overflow: hidden;
+    background: #000; border: 1px solid rgba(0, 243, 255, 0.2);
 }
+.service-img-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-.service-img-box img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-.service-info h3 {
-    font-size: 1rem;
-    color: #fff;
-    margin-bottom: 4px;
-}
-
-.service-info p {
-    font-size: 0.82rem;
-    color: var(--text-muted);
-    line-height: 1.4;
-}
-
+.service-info h3 { font-size: 1rem; color: #fff; margin-bottom: 4px; }
+.service-info p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.4; }
 .service-tag {
-    font-family: monospace;
-    font-size: 0.65rem;
-    color: var(--accent);
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    font-weight: 700;
+    font-family: monospace; font-size: 0.65rem; color: var(--accent);
+    letter-spacing: 1px; text-transform: uppercase; font-weight: 700;
 }
 
-.service-card.centered-last {
-    grid-column: 1 / -1;
-    max-width: 550px;
-    margin: 0 auto;
-    width: 100%;
-}
+.service-card.centered-last { grid-column: 1 / -1; max-width: 550px; margin: 0 auto; width: 100%; }
 
 /* CONTATTI */
-.contact-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 25px;
-}
+.contact-container { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
 
 .info-card {
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    padding: 24px;
-    border-radius: 14px;
-    backdrop-filter: blur(10px);
-    margin-bottom: 20px;
+    background: var(--glass-bg); border: 1px solid var(--glass-border);
+    padding: 24px; border-radius: 14px; backdrop-filter: blur(10px); margin-bottom: 20px;
+    transition: border-color 0.3s;
 }
-
+.info-card:hover { border-color: rgba(0, 243, 255, 0.4); }
 .info-card h3 { color: #fff; margin-bottom: 8px; font-size: 1.1rem; }
 .info-card p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 15px; }
 
 .social-btns { display: flex; gap: 10px; }
 .btn-social {
-    flex: 1;
-    padding: 10px;
-    border-radius: 8px;
-    text-align: center;
-    color: #fff;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.85rem;
+    flex: 1; padding: 10px; border-radius: 8px; text-align: center; color: #fff;
+    text-decoration: none; font-weight: 600; font-size: 0.85rem; transition: opacity 0.3s;
 }
+.btn-social:hover { opacity: 0.8; }
 .btn-whatsapp { background: #059669; }
 .btn-instagram { background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af); }
 
 .map-box {
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    padding: 15px;
-    border-radius: 14px;
-    height: 100%;
-    min-height: 380px;
+    background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 15px;
+    border-radius: 14px; height: 100%; min-height: 380px;
 }
-
 .map-box iframe {
-    width: 100%;
-    height: 100%;
-    min-height: 340px;
-    border-radius: 10px;
-    border: 0;
+    width: 100%; height: 100%; min-height: 340px; border-radius: 10px; border: 0;
     filter: invert(90%) hue-rotate(180deg) brightness(95%) contrast(90%);
 }
 
 footer {
-    text-align: center;
-    padding: 30px 0;
-    color: #64748b;
-    font-size: 0.8rem;
+    text-align: center; padding: 30px 0; color: #64748b; font-size: 0.8rem;
     border-top: 1px solid rgba(255,255,255,0.05);
 }
 
