@@ -24,60 +24,10 @@ body {
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
     position: relative;
-    cursor: none; /* Nasconde il cursore nativo ovunque */
+    cursor: none; /* Nascondiamo il cursore di default per farti vedere solo il tuo */
 }
 
-a, button, input, textarea, select {
-    cursor: none;
-}
-
-/* --- CURSORE AGGIORNATO --- */
-#cursor-wrapper {
-    position: fixed;
-    top: 0; 
-    left: 0;
-    pointer-events: none;
-    z-index: 9999;
-}
-
-.cursor-dot {
-    position: absolute;
-    width: 6px; 
-    height: 6px;
-    background-color: var(--accent); /* Ciano fisso al centro */
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    box-shadow: 0 0 10px var(--accent);
-}
-
-.cursor-orbit {
-    position: absolute;
-    width: 45px; 
-    height: 45px;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    animation: spin 3s linear infinite; /* Gira in un solo senso fluido */
-    transition: width 0.2s, height 0.2s, background-color 0.2s, border 0.2s;
-}
-
-.orbit-ball {
-    position: absolute;
-    width: 6px; 
-    height: 6px;
-    background-color: #ff8c00; /* Arancione orbitante */
-    border-radius: 50%;
-    top: -3px; 
-    left: 50%;
-    transform: translateX(-50%);
-    box-shadow: 0 0 10px #ff8c00;
-}
-
-@keyframes spin {
-    0% { transform: translate(-50%, -50%) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg); }
-}
-
-/* SFONDO E CIRCUITI (IL VERO DESIGN) */
+/* SFONDO E CIRCUITI */
 .circuit-background {
     position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
     background-image: 
@@ -113,16 +63,35 @@ a, button, input, textarea, select {
     box-shadow: 0 10px 30px rgba(0,0,0,0.6);
 }
 
-.logo-container { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.logo-container { display: flex; align-items: center; gap: 10px; text-decoration: none; cursor: none; }
 .logo-icon { width: 32px; height: 32px; background: linear-gradient(135deg, var(--accent), var(--accent-purple)); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 800; color: #030508; font-size: 0.95rem; }
 .logo-text { font-weight: 700; font-size: 1.1rem; color: #fff; }
 .logo-text span { color: var(--accent); }
 
 .nav-links { display: flex; list-style: none; gap: 25px; align-items: center; }
-.nav-links a { text-decoration: none; color: var(--text-muted); font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
+.nav-links a { text-decoration: none; color: var(--text-muted); font-size: 0.9rem; font-weight: 500; transition: color 0.3s; cursor: none; }
 .nav-links a:hover { color: #fff; text-shadow: 0 0 10px rgba(255,255,255,0.4); }
 
-/* LAYOUT E SEZIONI */
+/* CURSORE JS-DRIVEN (No transizioni dimensionali/posizionali!) */
+#cursorOrb {
+    position: fixed;
+    top: 0; left: 0; /* JS controlla la posizione */
+    background: var(--accent);
+    border-radius: 50%; /* JS lo modificherà */
+    pointer-events: none;
+    z-index: 9999;
+    box-shadow: 0 0 20px var(--accent), 0 0 40px var(--accent);
+    /* Transizioni CSS SOLO per i colori, JS fa il resto */
+    transition: background-color 0.2s, box-shadow 0.2s, border 0.2s;
+    border: 0px solid transparent;
+}
+
+.meteor-tail-dot {
+    position: fixed; pointer-events: none; z-index: 9998; border-radius: 50%;
+    background: var(--accent); box-shadow: 0 0 10px rgba(0,243,255,0.5);
+}
+
+/* LAYOUT CONTAINER & SEZIONI */
 .container { max-width: 1050px; margin: 0 auto; padding: 0 20px; }
 section { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 120px 0 60px 0; }
 
@@ -131,7 +100,7 @@ section { min-height: 100vh; display: flex; flex-direction: column; justify-cont
 .hero-content h1 { font-size: 3.5rem; font-weight: 800; color: #fff; margin-bottom: 20px; line-height: 1.1; letter-spacing: -1px; }
 .hero-content p { color: var(--text-muted); font-size: 1.1rem; max-width: 550px; margin-bottom: 35px; line-height: 1.6; }
 .hero-buttons { display: flex; gap: 15px; }
-.btn-primary, .btn-secondary, .btn-social { text-decoration: none; font-weight: 600; border-radius: 10px; display: inline-block; text-align: center; }
+.btn-primary, .btn-secondary, .btn-social { cursor: none; text-decoration: none; font-weight: 600; border-radius: 10px; display: inline-block; text-align: center; }
 .btn-primary { background: var(--accent); color: #030508; padding: 14px 28px; transition: box-shadow 0.3s, transform 0.2s; }
 .btn-primary:hover { box-shadow: 0 0 25px rgba(0, 243, 255, 0.6); transform: translateY(-2px); }
 .btn-secondary { background: transparent; color: var(--accent); border: 1px solid rgba(0, 243, 255, 0.4); padding: 14px 28px; transition: background 0.3s; }
@@ -147,7 +116,7 @@ section { min-height: 100vh; display: flex; flex-direction: column; justify-cont
 .service-card {
     background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 16px;
     padding: 24px; display: flex; gap: 20px; align-items: flex-start; backdrop-filter: blur(10px);
-    transition: border-color 0.3s;
+    transition: border-color 0.3s; cursor: none;
 }
 .service-card:hover { border-color: rgba(0, 243, 255, 0.6); }
 .featured-service { grid-column: 1 / -1; background: linear-gradient(145deg, rgba(10,15,25,0.8), rgba(0,243,255,0.05)); border-color: rgba(0,243,255,0.3); }
@@ -164,7 +133,7 @@ section { min-height: 100vh; display: flex; flex-direction: column; justify-cont
 
 /* CONTATTI GRID */
 .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 30px; }
-.info-card { background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 25px; border-radius: 16px; margin-bottom: 20px; transition: border-color 0.3s; }
+.info-card { background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 25px; border-radius: 16px; margin-bottom: 20px; transition: border-color 0.3s; cursor: none; }
 .info-card:hover { border-color: rgba(0, 243, 255, 0.4); }
 .info-card h3 { color: #fff; margin-bottom: 10px; font-size: 1.2rem; }
 .info-card p { color: var(--text-muted); line-height: 1.5; }
