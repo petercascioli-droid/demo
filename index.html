@@ -1,18 +1,72 @@
 <!DOCTYPE html>
 <html lang="it">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>STUDIO STUDIO — Architettura e Interior Design</title>
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Karla:wght@300;400;500&display=swap" rel="stylesheet" />
-  </head>
-  <body>
-    <div id="root"></div>
-    <!-- Vite gestirà questo file .tsx durante lo sviluppo e la build -->
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hardware Lab | Riparazioni Ad Alta Precisione</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">HARDWARE<span>LAB</span></div>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="riparazioni.html">Servizi & Schede</a></li>
+            <li><a href="diagnostica.html">Laboratorio BGA</a></li>
+        </ul>
+        <a href="riparazioni.html" class="btn-primary">Richiedi Checkup</a>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <div class="badge">🔬 Micro-Saldatura & Diagnostica Level 3</div>
+            <h1>Ripristino Hardware <br><span class="gradient-text">Senza Compromessi.</span></h1>
+            <p>Dalla sostituzione di display OLED alla ricostruzione di linee di alimentazione in corto su schede madri Smartphone e Tablet.</p>
+            <div class="hero-btns">
+                <a href="riparazioni.html" class="btn-primary">Esplora Interventi</a>
+                <a href="diagnostica.html" class="btn-secondary">Scopri il Laboratorio</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="tech-card-glass">
+                <div class="chip-icon">⚡</div>
+                <h3>Precisione al Microscopio</h3>
+                <p>Interventi SMD/BGA sotto ingrandimento ottico 45x per la massima accuratezza dei componenti.</p>
+                <div class="stats-grid">
+                    <div><strong>0.02mm</strong> Spessore Jumpers</div>
+                    <div><strong>99.4%</strong> Successo Short-Circuit</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="quick-specs">
+        <h2>Perché l'Architettura Hardware Conta</h2>
+        <div class="grid-3">
+            <div class="card">
+                <div class="card-icon">📱</div>
+                <h3>Display OLED / AMOLED</h3>
+                <p>Taratura del controller touch e ripristino dei sensori ambientali TrueTone & Haptic Engine.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🔋</div>
+                <h3>Sistemi di Alimentazione</h3>
+                <p>Sostituzione celle con bms integrato, calibrazione dei cicli e verifica IC di ricarica PMIC.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🩺</div>
+                <h3>Recupero Danni da Liquidi</h3>
+                <p>Lavaggio ad ultrasuoni in solvente anidro e deossidazione chimica della scheda logica.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Hardware Lab — Ingegneria e Riparazione Dispositivi Mobile</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
 </html>
