@@ -1,146 +1,117 @@
 document.addEventListener("DOMContentLoaded", () => {
-    
-    // --- 1. SFONDO ANIMATO CANVAS (Autonomo / Circuito Nanotech) ---
-    const canvas = document.getElementById('bgCanvas');
-    const ctx = canvas.getContext('2d');
-    
-    function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
+    const ball = document.getElementById('cursorBall');
 
-    const particleCount = Math.floor(window.innerWidth / 35);
-    const particles = [];
-    
-    for (let i = 0; i < particleCount; i++) {
-        particles.push({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            vx: (Math.random() - 0.5) * 0.6,
-            vy: (Math.random() - 0.5) * 0.6,
-            radius: Math.random() * 1.5 + 0.5
-        });
-    }
-
-    function animateBackground() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
-        ctx.fillStyle = 'rgba(0, 243, 255, 0.35)';
-        ctx.strokeStyle = 'rgba(0, 243, 255, 0.08)';
-        ctx.lineWidth = 1;
-
-        for (let i = 0; i < particles.length; i++) {
-            let p = particles[i];
-            p.x += p.vx;
-            p.y += p.vy;
-
-            if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-            if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
-
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-            ctx.fill();
-
-            for (let j = i + 1; j < particles.length; j++) {
-                let p2 = particles[j];
-                let dist = Math.hypot(p.x - p2.x, p.y - p2.y);
-                if (dist < 110) {
-                    ctx.beginPath();
-                    ctx.moveTo(p.x, p.y);
-                    ctx.lineTo(p2.x, p2.y);
-                    ctx.stroke();
-                }
-            }
-        }
-        requestAnimationFrame(animateBackground);
-    }
-    animateBackground();
-
-
-    // --- 2. CURSORE CUSTOM CON PALLINA ORBITANTE E SNAP ---
-    const cursor = document.getElementById('customCursor');
-    const ball = cursor.querySelector('.orbiting-ball');
-    
+    // Posizione reale del mouse
     let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
-    let current = { x: mouse.x, y: mouse.y, w: 35, h: 35, radius: 50 };
-    let target = { x: mouse.x, y: mouse.y, w: 35, h: 35, radius: 50 };
-    let targetElement = null;
+    let lastMouse = { x: mouse.x, y: mouse.y };
+
+    // Posizione fisica corrente della pallina
+    let pos = { x: mouse.x, y: mouse.y };
+    
+    // Parametri orbitali e fisici
     let angle = 0;
+    let targetElement = null;
 
     document.addEventListener('mousemove', (e) => {
         mouse.x = e.clientX;
         mouse.y = e.clientY;
     });
 
+    // Selettori interattivi per lo snap sui bottoni/card
     const interactiveSelectors = '.service-card, .info-card, .btn-primary, .btn-secondary, .btn-social, .nav-links a, .logo-container';
-    
-    document.addEventListener('mouseover', (e) => {
-        const interactive = e.target.closest(interactiveSelectors);
-        if (interactive) {
-            targetElement = interactive;
-            ball.style.background = '#ffffff';
-            ball.style.boxShadow = '0 0 20px #ffffff';
-        }
-    });
+    const interactiveElements = document.querySelectorAll(interactiveSelectors);
 
-    document.addEventListener('mouseout', (e) => {
-        if (targetElement && (!e.relatedTarget || !e.relatedTarget.closest(interactiveSelectors))) {
-            targetElement = null;
-            ball.style.background = '#ffffff';
-            ball.style.boxShadow = '0 0 12px #ffffff, 0 0 20px var(--accent)';
-        }
+    interactiveElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            targetElement = el;
+            ball.style.background = 'rgba(0, 243, 255, 0.1)';
+            ball.style.border = '2px solid var(--accent)';
+            ball.style.boxShadow = '0 0 20px rgba(0, 243, 255, 0.4)';
+        });
+
+        el.addEventListener('mouseleave', () => {
+            setTimeout(() => {
+                const hoveredNow = document.querySelector(':hover');
+                if (!hoveredNow || !hoveredNow.closest(interactiveSelectors)) {
+                    targetElement = null;
+                    ball.style.background = 'var(--accent)';
+                    ball.style.border = '0px solid transparent';
+                    ball.style.boxShadow = '0 0 12px var(--accent), 0 0 25px var(--accent)';
+                }
+            }, 10);
+        });
     });
 
     const lerp = (start, end, amt) => (1 - amt) * start + amt * end;
 
-    function renderCursor() {
-        // Fa ruotare la pallina attorno al cursore se non è agganciata a un elemento
-        if (!targetElement) {
-            angle += 0.05;
-            let radiusOrbit = 18;
-            let ballX = Math.cos(angle) * radiusOrbit;
-            let ballY = Math.sin(angle) * radiusOrbit;
-            ball.style.transform = `translate(calc(-50% + ${ballX}px), calc(-50% + ${ballY}px))`;
-        } else {
-            // Quando è sopra un elemento, la pallina si posiziona elegantemente in alto
-            ball.style.transform = `translate(-50%, -18px)`;
-        }
-
+    function renderPhysics() {
         if (targetElement) {
+            // --- MODALITÀ SNAP (Sopra un elemento cliccabile) ---
             const rect = targetElement.getBoundingClientRect();
-            target.w = rect.width + 12;
-            target.h = rect.height + 12;
-            target.x = rect.left + rect.width / 2;
-            target.y = rect.top + rect.height / 2;
-            target.radius = 12;
+            let targetX = rect.left + rect.width / 2;
+            let targetY = rect.top + rect.height / 2;
+            let targetW = rect.width + 10;
+            let targetH = rect.height + 10;
 
-            current.x = lerp(current.x, target.x, 0.25);
-            current.y = lerp(current.y, target.y, 0.25);
-            current.w = lerp(current.w, target.w, 0.25);
-            current.h = lerp(current.h, target.h, 0.25);
-            current.radius = lerp(current.radius, target.radius, 0.25);
+            pos.x = lerp(pos.x, targetX, 0.25);
+            pos.y = lerp(pos.y, targetY, 0.25);
+
+            let currentW = parseFloat(ball.style.width) || 12;
+            let currentH = parseFloat(ball.style.height) || 12;
+            
+            ball.style.width = `${lerp(currentW, targetW, 0.25)}px`;
+            ball.style.height = `${lerp(currentH, targetH, 0.25)}px`;
+            ball.style.borderRadius = '14px';
+            ball.style.transform = `translate(-50%, -50%) rotate(0deg)`;
+
         } else {
-            target.w = 35;
-            target.h = 35;
-            target.radius = 50;
+            // --- MODALITÀ FISICA AVANZATA (Orbita, Centrifuga & Allungamento) ---
+            
+            // 1. Calcola la velocità del mouse (per l'inerzia e l'allungamento)
+            let vx = mouse.x - lastMouse.x;
+            let vy = mouse.y - lastMouse.y;
+            let speed = Math.hypot(vx, vy);
 
-            current.x = lerp(current.x, mouse.x, 0.3);
-            current.y = lerp(current.y, mouse.y, 0.3);
-            current.w = lerp(current.w, target.w, 0.25);
-            current.h = lerp(current.h, target.h, 0.25);
-            current.radius = lerp(current.radius, target.radius, 0.25);
+            lastMouse.x = mouse.x;
+            lastMouse.y = mouse.y;
+
+            // 2. Progredisce l'angolo dell'orbita (accelerando leggermente se il mouse si muove veloce)
+            angle += 0.07 + (speed * 0.002);
+            let orbitRadius = 20;
+
+            // 3. Effetto centrifuga: spinge l'orbita verso l'esterno in base alla velocità
+            let centrifugalForce = Math.min(speed * 0.4, 15);
+            let currentRadius = orbitRadius + centrifugalForce;
+
+            // Posizione ideale attorno al mouse
+            let targetOrbX = mouse.x + Math.cos(angle) * currentRadius;
+            let targetOrbY = mouse.y + Math.sin(angle) * currentRadius;
+
+            // Inerzia fluida della pallina verso la posizione orbitale
+            pos.x = lerp(pos.x, targetOrbX, 0.2);
+            pos.y = lerp(pos.y, targetOrbY, 0.2);
+
+            // 4. Calcola l'allungamento (stretch) e l'inclinazione in base alla direzione del movimento
+            let moveAngle = Math.atan2(vy, vx);
+            let stretch = Math.min(speed * 0.6, 18); // Intensità dell'allungamento
+
+            let baseSize = 12;
+            let width = baseSize + stretch;
+            let height = Math.max(6, baseSize - stretch * 0.5);
+
+            ball.style.width = `${width}px`;
+            ball.style.height = `${height}px`;
+            ball.style.borderRadius = '50%';
+            
+            // Ruota la pallina orientandola lungo la direzione di movimento (effetto scia dinamica)
+            ball.style.transform = `translate(-50%, -50%) rotate(${moveAngle}rad)`;
         }
 
-        cursor.style.width = `${current.w}px`;
-        cursor.style.height = `${current.h}px`;
-        cursor.style.left = `${current.x}px`;
-        cursor.style.top = `${current.y}px`;
-        cursor.style.borderRadius = current.radius > 40 ? `50%` : `${current.radius}px`;
+        ball.style.left = `${pos.x}px`;
+        ball.style.top = `${pos.y}px`;
 
-        requestAnimationFrame(renderCursor);
+        requestAnimationFrame(renderPhysics);
     }
 
-    renderCursor();
+    renderPhysics();
 });
